@@ -7,7 +7,7 @@ Note: if both ModelSim-Altera and ModelSim executables are available, ModelSim-A
 
 **** Generating the ModelSim Testbench ****
 
-quartus_eda --gen_testbench --tool=modelsim_oem --format=vhdl --write_settings_files=off crc -c crc --vector_source="C:/Users/ruisantos/Desktop/acaProj1/Waveform1.vwf" --testbench_file="C:/Users/ruisantos/Desktop/acaProj1/simulation/qsim/Waveform1.vwf.vht"
+quartus_eda --gen_testbench --tool=modelsim_oem --format=vhdl --write_settings_files=off crc -c crc --vector_source="C:/Users/ruisantos/Desktop/acaProj1/Waveform2.vwf" --testbench_file="C:/Users/ruisantos/Desktop/acaProj1/simulation/qsim/Waveform2.vwf.vht"
 
 Info: *******************************************************************
 Info: Running Quartus Prime EDA Netlist Writer
@@ -26,17 +26,9 @@ Info: Running Quartus Prime EDA Netlist Writer
     Info: Intel and sold by Intel or its authorized distributors.  Please
     Info: refer to the applicable agreement for further details, at
     Info: https://fpgasoftware.intel.com/eula.
-    Info: Processing started: Fri Dec 04 11:24:48 2020
-Info: Command: quartus_eda --gen_testbench --tool=modelsim_oem --format=vhdl --write_settings_files=off crc -c crc --vector_source=C:/Users/ruisantos/Desktop/acaProj1/Waveform1.vwf --testbench_file=C:/Users/ruisantos/Desktop/acaProj1/simulation/qsim/Waveform1.vwf.vht
+    Info: Processing started: Fri Dec 04 15:02:28 2020
+Info: Command: quartus_eda --gen_testbench --tool=modelsim_oem --format=vhdl --write_settings_files=off crc -c crc --vector_source=C:/Users/ruisantos/Desktop/acaProj1/Waveform2.vwf --testbench_file=C:/Users/ruisantos/Desktop/acaProj1/simulation/qsim/Waveform2.vwf.vht
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
-
-n "s0[0]" in vector source file when writing test bench files
-Info (201002): Generated VHDL Test Bench File C:/Users/ruisantos/Desktop/acaProj1/simulation/qsim/Waveform1.vwf.vht for simulation
-Info: Quartus Prime EDA Netlist Writer was successful. 0 errors, 26 warnings
-    Info: Peak virtual memory: 4712 megabytes
-    Info: Processing ended: Fri Dec 04 11:24:48 2020
-    Info: Elapsed time: 00:00:00
-    Info: Total CPU time (on all processors): 00:00:01
 
 Completed successfully. 
 
@@ -61,14 +53,14 @@ Info: Running Quartus Prime EDA Netlist Writer
     Info: Intel and sold by Intel or its authorized distributors.  Please
     Info: refer to the applicable agreement for further details, at
     Info: https://fpgasoftware.intel.com/eula.
-    Info: Processing started: Fri Dec 04 11:24:49 2020
+    Info: Processing started: Fri Dec 04 15:02:29 2020
 Info: Command: quartus_eda --write_settings_files=off --simulation=on --functional=on --flatten_buses=off --tool=modelsim_oem --format=vhdl --output_directory=C:/Users/ruisantos/Desktop/acaProj1/simulation/qsim/ crc -c crc
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (204019): Generated file crc.vho in folder "C:/Users/ruisantos/Desktop/acaProj1/simulation/qsim//" for EDA simulation tool
 Info: Quartus Prime EDA Netlist Writer was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 4714 megabytes
-    Info: Processing ended: Fri Dec 04 11:24:49 2020
-    Info: Elapsed time: 00:00:00
+    Info: Peak virtual memory: 4718 megabytes
+    Info: Processing ended: Fri Dec 04 15:02:30 2020
+    Info: Elapsed time: 00:00:01
     Info: Total CPU time (on all processors): 00:00:01
 
 Completed successfully. 
@@ -85,16 +77,17 @@ c:/intelfpga_lite/20.1/modelsim_ase/win32aloem//vsim -c -do crc.do
 
 Reading pref.tcl
 
+
 # 2020.1
 
-
 # do crc.do
-# ** Warning: (vlib-34) Library already exists at "work".
 
+# ** Warning: (vlib-34) Library already exists at "work".
 # Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 11:24:50 on Dec 04,2020
+# Start time: 15:02:31 on Dec 04,2020
 # vcom -work work crc.vho 
 # -- Loading package STANDARD
+
 # -- Loading package TEXTIO
 # -- Loading package std_logic_1164
 # -- Loading package VITAL_Timing
@@ -103,34 +96,33 @@ Reading pref.tcl
 # -- Loading package cycloneiv_components
 # -- Compiling entity hard_block
 # -- Compiling architecture structure of hard_block
-# -- Compiling entity encoder_16_24
-# -- Compiling architecture structure of encoder_16_24
-
-# End time: 11:24:51 on Dec 04,2020, Elapsed time: 0:00:01
+# -- Compiling entity checker_24_1
+# -- Compiling architecture structure of checker_24_1
+# End time: 15:02:31 on Dec 04,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 11:24:51 on Dec 04,2020
-# vcom -work work Waveform1.vwf.vht 
 
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 15:02:31 on Dec 04,2020
+# vcom -work work Waveform2.vwf.vht 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
 # -- Loading package std_logic_1164
-# -- Compiling entity encoder_16_24_vhd_vec_tst
-# -- Compiling architecture encoder_16_24_arch of encoder_16_24_vhd_vec_tst
-# End time: 11:24:51 on Dec 04,2020, Elapsed time: 0:00:00
+# -- Compiling entity checker_24_1_vhd_vec_tst
+# -- Compiling architecture checker_24_1_arch of checker_24_1_vhd_vec_tst
+# End time: 15:02:31 on Dec 04,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 
-# vsim -c -t 1ps -L cycloneiv -L altera -L altera_mf -L 220model -L sgate -L altera_lnsim work.encoder_16_24_vhd_vec_tst 
-# Start time: 11:24:51 on Dec 04,2020
+# vsim -c -t 1ps -L cycloneiv -L altera -L altera_mf -L 220model -L sgate -L altera_lnsim work.checker_24_1_vhd_vec_tst 
+# Start time: 15:02:31 on Dec 04,2020
 # Loading std.standard
 # Loading std.textio(body)
 # Loading ieee.std_logic_1164(body)
-# Loading work.encoder_16_24_vhd_vec_tst(encoder_16_24_arch)
+# Loading work.checker_24_1_vhd_vec_tst(checker_24_1_arch)
 # Loading ieee.vital_timing(body)
 # Loading ieee.vital_primitives(body)
 # Loading cycloneiv.cycloneiv_atom_pack(body)
 # Loading cycloneiv.cycloneiv_components
-# Loading work.encoder_16_24(structure)
+# Loading work.checker_24_1(structure)
 # Loading work.hard_block(structure)
 # Loading ieee.std_logic_arith(body)
 # Loading cycloneiv.cycloneiv_io_obuf(arch)
@@ -138,20 +130,20 @@ Reading pref.tcl
 # Loading cycloneiv.cycloneiv_lcell_comb(vital_lcell_comb)
 # after#33
 
-# End time: 11:24:51 on Dec 04,2020, Elapsed time: 0:00:00
+# End time: 15:02:32 on Dec 04,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 
 Completed successfully. 
 
 **** Converting ModelSim VCD to vector waveform ****
 
-Reading C:/Users/ruisantos/Desktop/acaProj1/Waveform1.vwf...
+Reading C:/Users/ruisantos/Desktop/acaProj1/Waveform2.vwf...
 
 Reading C:/Users/ruisantos/Desktop/acaProj1/simulation/qsim/crc.msim.vcd...
 
 Processing channel transitions... 
 
-Writing the resulting VWF to C:/Users/ruisantos/Desktop/acaProj1/simulation/qsim/crc_20201204112452.sim.vwf
+Writing the resulting VWF to C:/Users/ruisantos/Desktop/acaProj1/simulation/qsim/crc_20201204150232.sim.vwf
 
 Finished VCD to VWF conversion.
 
