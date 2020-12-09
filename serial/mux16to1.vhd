@@ -3,35 +3,30 @@ USE ieee.std_logic_1164.all;
 USE ieee.numeric_std.all;
 
 ENTITY mux16to1 IS
-  PORT (s:  IN STD_LOGIC_VECTOR (3 DOWNTO 0);
-        i:  IN STD_LOGIC_VECTOR (15 DOWNTO 0);
-        o:  OUT STD_LOGIC;
+  PORT (i16:     IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+        sel16:  	IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+        f16:    	OUT STD_LOGIC);
 END mux16to1;
 
-architecture behavior of mux16to1 is
+architecture structural of mux16to1 is
+	
+	signal y1 : std_logic;
+	signal y2 : std_logic;
+
+	COMPONENT mux2to1
+    PORT (s:  IN STD_LOGIC;
+          a, b:  IN STD_LOGIC;
+          o: OUT STD_LOGIC);
+	END COMPONENT;
+	
+	COMPONENT mux8to1
+    PORT (i8:     IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+        sel8:  	IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+        f8:    	OUT STD_LOGIC);
+	END COMPONENT;
+
 begin
-    process(x, en)
-    begin
-        case( s ) is
-        
-            when "0000" => o <= i(0);
-            when "0001" => o <= i(1);
-            when "0010" => o <= i(2);
-            when "0011" => o <= i(3);
-            when "0100" => o <= i(4);
-            when "0101" => o <= i(5);
-            when "0110" => o <= i(6);
-            when "0111" => o <= i(7);
-            when "1000" => o <= i(8);
-            when "1001" => o <= i(9);
-            when "1010" => o <= i(10);
-            when "1011" => o <= i(11);
-            when "1100" => o <= i(12);
-            when "1101" => o <= i(13);
-            when "1110" => o <= i(14);
-            when "1111" => o <= i(15);
-            when others => y <= "Z"
-        
-        end case ;
-    end process;
-end behavior;
+    res1  : mux8to1 PORT MAP(i8=>i16(7 downto 0), sel8=>sel16(2 downto 0), f8=>y1);
+	 res2  : mux8to1 PORT MAP(i8=>i16(15 downto 8), sel8=>sel16(2 downto 0), f8=>y2);
+	 final  : mux2to1 PORT MAP(s=>sel16(3), a=>y1, b=>y2, o=>f16);
+end structural;

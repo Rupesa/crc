@@ -1,0 +1,36 @@
+|flipflopT
+clk => gateAnd3:andd.x0
+clk => gateAnd3:andd1.x0
+T => gateAnd3:andd.x1
+T => gateAnd3:andd1.x1
+nRst => ~NO_FANOUT~
+Q <= gateNOr2:norr.y
+nQ <= gateNOr2:norr1.y
+
+
+|flipflopT|gateAnd3:andd
+x0 => y.IN0
+x1 => y.IN1
+x2 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|flipflopT|gateAnd3:andd1
+x0 => y.IN0
+x1 => y.IN1
+x2 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|flipflopT|gateNOr2:norr
+x1 => y.IN0
+x2 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|flipflopT|gateNOr2:norr1
+x1 => y.IN0
+x2 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+

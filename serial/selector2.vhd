@@ -28,7 +28,7 @@ architecture behavior of selector2 is
                 when "1100" => a_enabler <= "00100101";
                 when "1101" => a_enabler <= "01001010";
                 when "1110" => a_enabler <= "10010100";
-                when "1111" => a_enabler <= "00000110";
+                when "1111" => a_enabler <= "00000111";
                 when others => a_enabler <= "00000000";
             
             end case ;
