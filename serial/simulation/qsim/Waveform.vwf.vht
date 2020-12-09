@@ -19,9 +19,9 @@
 -- the top level entity of the current Quartus project .The user can use this   
 -- testbench to simulate his design using a third-party simulation tool .       
 -- *****************************************************************************
--- Generated on "12/08/2020 19:30:49"
+-- Generated on "12/09/2020 13:08:23"
                                                              
--- Vhdl Test Bench(with test vectors) for design  :          mux2to1
+-- Vhdl Test Bench(with test vectors) for design  :          flipFlopT
 -- 
 -- Simulation tool : 3rd Party
 -- 
@@ -29,51 +29,72 @@
 LIBRARY ieee;                                               
 USE ieee.std_logic_1164.all;                                
 
-ENTITY mux2to1_vhd_vec_tst IS
-END mux2to1_vhd_vec_tst;
-ARCHITECTURE mux2to1_arch OF mux2to1_vhd_vec_tst IS
+ENTITY flipFlopT_vhd_vec_tst IS
+END flipFlopT_vhd_vec_tst;
+ARCHITECTURE flipFlopT_arch OF flipFlopT_vhd_vec_tst IS
 -- constants                                                 
 -- signals                                                   
-SIGNAL a : STD_LOGIC;
-SIGNAL b : STD_LOGIC;
-SIGNAL o : STD_LOGIC;
-SIGNAL s : STD_LOGIC;
-COMPONENT mux2to1
+SIGNAL clk : STD_LOGIC;
+SIGNAL nRst : STD_LOGIC;
+SIGNAL Q : STD_LOGIC;
+SIGNAL T : STD_LOGIC;
+COMPONENT flipFlopT
 	PORT (
-	a : IN STD_LOGIC;
-	b : IN STD_LOGIC;
-	o : OUT STD_LOGIC;
-	s : IN STD_LOGIC
+	clk : IN STD_LOGIC;
+	nRst : IN STD_LOGIC;
+	Q : OUT STD_LOGIC;
+	T : IN STD_LOGIC
 	);
 END COMPONENT;
 BEGIN
-	i1 : mux2to1
+	i1 : flipFlopT
 	PORT MAP (
 -- list connections between master ports and signals
-	a => a,
-	b => b,
-	o => o,
-	s => s
+	clk => clk,
+	nRst => nRst,
+	Q => Q,
+	T => T
 	);
 
--- a
-t_prcs_a: PROCESS
+-- nRst
+t_prcs_nRst: PROCESS
 BEGIN
-	a <= '1';
+	nRst <= '1';
+	WAIT FOR 560000 ps;
+	nRst <= '0';
+	WAIT FOR 100000 ps;
+	nRst <= '1';
 WAIT;
-END PROCESS t_prcs_a;
+END PROCESS t_prcs_nRst;
 
--- b
-t_prcs_b: PROCESS
+-- clk
+t_prcs_clk: PROCESS
 BEGIN
-	b <= '0';
+	FOR i IN 1 TO 16
+	LOOP
+		clk <= '0';
+		WAIT FOR 30000 ps;
+		clk <= '1';
+		WAIT FOR 30000 ps;
+	END LOOP;
+	clk <= '0';
+	WAIT FOR 30000 ps;
+	clk <= '1';
 WAIT;
-END PROCESS t_prcs_b;
+END PROCESS t_prcs_clk;
 
--- s
-t_prcs_s: PROCESS
+-- T
+t_prcs_T: PROCESS
 BEGIN
-	s <= '1';
+	T <= '0';
+	WAIT FOR 80000 ps;
+	T <= '1';
+	WAIT FOR 420000 ps;
+	T <= '0';
+	WAIT FOR 240000 ps;
+	T <= '1';
+	WAIT FOR 20000 ps;
+	T <= '0';
 WAIT;
-END PROCESS t_prcs_s;
-END mux2to1_arch;
+END PROCESS t_prcs_T;
+END flipFlopT_arch;

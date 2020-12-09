@@ -1,5 +1,5 @@
 Analysis & Synthesis report for encoder-checker-crc8
-Wed Dec 09 03:28:30 2020
+Wed Dec 09 19:23:59 2020
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
@@ -13,11 +13,27 @@ Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. Logic Cells Representing Combinational Loops
-  9. General Register Statistics
- 10. Post-Synthesis Netlist Statistics for Top Partition
- 11. Elapsed Time Per Partition
- 12. Analysis & Synthesis Messages
+  8. General Register Statistics
+  9. Port Connectivity Checks: "rserializer:serializer|reverse_counter_7_0:counter|flipFlopT:ff2"
+ 10. Port Connectivity Checks: "rserializer:serializer|reverse_counter_7_0:counter|flipFlopT:ff1"
+ 11. Port Connectivity Checks: "rserializer:serializer|reverse_counter_7_0:counter|flipFlopT:ff0"
+ 12. Port Connectivity Checks: "encoder_semi_parallel:semi_parallel|non_delayer:nd|flipFlopT:ff0"
+ 13. Port Connectivity Checks: "encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft8"
+ 14. Port Connectivity Checks: "encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft7"
+ 15. Port Connectivity Checks: "encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft6"
+ 16. Port Connectivity Checks: "encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft5"
+ 17. Port Connectivity Checks: "encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft4"
+ 18. Port Connectivity Checks: "encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft3"
+ 19. Port Connectivity Checks: "encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft2"
+ 20. Port Connectivity Checks: "encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft1"
+ 21. Port Connectivity Checks: "encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter|flipFlopT:ff3"
+ 22. Port Connectivity Checks: "encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter|flipFlopT:ff2"
+ 23. Port Connectivity Checks: "encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter|flipFlopT:ff1"
+ 24. Port Connectivity Checks: "encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter|flipFlopT:ff0"
+ 25. Port Connectivity Checks: "encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter"
+ 26. Post-Synthesis Netlist Statistics for Top Partition
+ 27. Elapsed Time Per Partition
+ 28. Analysis & Synthesis Messages
 
 
 
@@ -44,15 +60,15 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Wed Dec 09 03:28:30 2020       ;
+; Analysis & Synthesis Status        ; Successful - Wed Dec 09 19:23:58 2020       ;
 ; Quartus Prime Version              ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
 ; Revision Name                      ; encoder-checker-crc8                        ;
-; Top-level Entity Name              ; flipFlopT                                   ;
+; Top-level Entity Name              ; encoder_serial                              ;
 ; Family                             ; Cyclone IV GX                               ;
-; Total logic elements               ; 2                                           ;
-;     Total combinational functions  ; 2                                           ;
-;     Dedicated logic registers      ; 0                                           ;
-; Total registers                    ; 0                                           ;
+; Total logic elements               ; 33                                          ;
+;     Total combinational functions  ; 33                                          ;
+;     Dedicated logic registers      ; 17                                          ;
+; Total registers                    ; 17                                          ;
 ; Total pins                         ; 5                                           ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
@@ -70,7 +86,7 @@ https://fpgasoftware.intel.com/eula.
 +------------------------------------------------------------------+--------------------+----------------------+
 ; Option                                                           ; Setting            ; Default Value        ;
 +------------------------------------------------------------------+--------------------+----------------------+
-; Top-level entity name                                            ; flipflopT          ; encoder-checker-crc8 ;
+; Top-level entity name                                            ; encoder_serial     ; encoder-checker-crc8 ;
 ; Family name                                                      ; Cyclone IV GX      ; Cyclone V            ;
 ; Use smart compilation                                            ; Off                ; Off                  ;
 ; Enable parallel Assembler and Timing Analyzer during compilation ; On                 ; On                   ;
@@ -159,22 +175,37 @@ https://fpgasoftware.intel.com/eula.
 ; Maximum allowed            ; 2           ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
-; Maximum used               ; 1           ;
+; Maximum used               ; 2           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.0%      ;
 +----------------------------+-------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                           ;
-+----------------------------------+-----------------+-----------------+-------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                    ; Library ;
-+----------------------------------+-----------------+-----------------+-------------------------------------------------+---------+
-; flipflopT.vhd                    ; yes             ; User VHDL File  ; C:/Users/ruisantos/Desktop/serial/flipflopT.vhd ;         ;
-; gateAnd3.vhd                     ; yes             ; User VHDL File  ; C:/Users/ruisantos/Desktop/serial/gateAnd3.vhd  ;         ;
-; gateNOr2.vhd                     ; yes             ; User VHDL File  ; C:/Users/ruisantos/Desktop/serial/gateNOr2.vhd  ;         ;
-+----------------------------------+-----------------+-----------------+-------------------------------------------------+---------+
++----------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                       ;
++----------------------------------+-----------------+-----------------+-------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                ; Library ;
++----------------------------------+-----------------+-----------------+-------------------------------------------------------------+---------+
+; encoder_serial.vhd               ; yes             ; User VHDL File  ; C:/Users/ruisantos/Desktop/serial/encoder_serial.vhd        ;         ;
+; rserializer.vhd                  ; yes             ; User VHDL File  ; C:/Users/ruisantos/Desktop/serial/rserializer.vhd           ;         ;
+; encoder_semi_parallel.vhd        ; yes             ; User VHDL File  ; C:/Users/ruisantos/Desktop/serial/encoder_semi_parallel.vhd ;         ;
+; ai_divider.vhd                   ; yes             ; User VHDL File  ; C:/Users/ruisantos/Desktop/serial/ai_divider.vhd            ;         ;
+; xfo.vhd                          ; yes             ; User VHDL File  ; C:/Users/ruisantos/Desktop/serial/xfo.vhd                   ;         ;
+; reverse_counter_15_0.vhd         ; yes             ; User VHDL File  ; C:/Users/ruisantos/Desktop/serial/reverse_counter_15_0.vhd  ;         ;
+; reverse_counter_7_0.vhd          ; yes             ; User VHDL File  ; C:/Users/ruisantos/Desktop/serial/reverse_counter_7_0.vhd   ;         ;
+; flipflopT.vhd                    ; yes             ; User VHDL File  ; C:/Users/ruisantos/Desktop/serial/flipflopT.vhd             ;         ;
+; mux2to1.vhd                      ; yes             ; User VHDL File  ; C:/Users/ruisantos/Desktop/serial/mux2to1.vhd               ;         ;
+; gateNOr4.vhd                     ; yes             ; User VHDL File  ; C:/Users/ruisantos/Desktop/serial/gateNOr4.vhd              ;         ;
+; gateAnd2.vhd                     ; yes             ; User VHDL File  ; C:/Users/ruisantos/Desktop/serial/gateAnd2.vhd              ;         ;
+; flipflopD.vhd                    ; yes             ; User VHDL File  ; C:/Users/ruisantos/Desktop/serial/flipflopD.vhd             ;         ;
+; mux8to1.vhd                      ; yes             ; User VHDL File  ; C:/Users/ruisantos/Desktop/serial/mux8to1.vhd               ;         ;
+; selector2.vhd                    ; yes             ; User VHDL File  ; C:/Users/ruisantos/Desktop/serial/selector2.vhd             ;         ;
+; mux4to1.vhd                      ; yes             ; User VHDL File  ; C:/Users/ruisantos/Desktop/serial/mux4to1.vhd               ;         ;
+; gateXOR2.vhd                     ; yes             ; User VHDL File  ; C:/Users/ruisantos/Desktop/serial/gateXOR2.vhd              ;         ;
+; non_delayer.vhd                  ; yes             ; User VHDL File  ; C:/Users/ruisantos/Desktop/serial/non_delayer.vhd           ;         ;
++----------------------------------+-----------------+-----------------+-------------------------------------------------------------+---------+
 
 
 +---------------------------------------------+
@@ -186,35 +217,68 @@ https://fpgasoftware.intel.com/eula.
 ;                          ;                  ;
 ; DSP block 9-bit elements ; 0                ;
 ;                          ;                  ;
-; Maximum fan-out node     ; gateNOr2:norr|y  ;
-; Maximum fan-out          ; 3                ;
-; Total fan-out            ; 15               ;
-; Average fan-out          ; 1.25             ;
+; Maximum fan-out node     ; clk~input        ;
+; Maximum fan-out          ; 17               ;
+; Total fan-out            ; 166              ;
+; Average fan-out          ; 2.77             ;
 +--------------------------+------------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                        ;
-+----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+-----------+------+--------------+---------------------------+-------------+--------------+
-; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; DSP 36x36 ; Pins ; Virtual Pins ; Full Hierarchy Name       ; Entity Name ; Library Name ;
-+----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+-----------+------+--------------+---------------------------+-------------+--------------+
-; |flipFlopT                 ; 2 (0)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 5    ; 0            ; |flipFlopT                ; flipFlopT   ; work         ;
-;    |gateNOr2:norr1|        ; 1 (1)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |flipFlopT|gateNOr2:norr1 ; gateNOr2    ; work         ;
-;    |gateNOr2:norr|         ; 1 (1)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |flipFlopT|gateNOr2:norr  ; gateNOr2    ; work         ;
-+----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+-----------+------+--------------+---------------------------+-------------+--------------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                                                     ;
++------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+-----------+------+--------------+----------------------------------------------------------------------------------------------------------------+-----------------------+--------------+
+; Compilation Hierarchy Node               ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; DSP 36x36 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                            ; Entity Name           ; Library Name ;
++------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+-----------+------+--------------+----------------------------------------------------------------------------------------------------------------+-----------------------+--------------+
+; |encoder_serial                          ; 33 (0)              ; 17 (0)                    ; 0           ; 0            ; 0       ; 0         ; 0         ; 5    ; 0            ; |encoder_serial                                                                                                ; encoder_serial        ; work         ;
+;    |encoder_semi_parallel:semi_parallel| ; 24 (0)              ; 14 (0)                    ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|encoder_semi_parallel:semi_parallel                                                            ; encoder_semi_parallel ; work         ;
+;       |ai_divider:ai_div|                ; 9 (0)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|encoder_semi_parallel:semi_parallel|ai_divider:ai_div                                          ; ai_divider            ; work         ;
+;          |gateAnd2:nr|                   ; 1 (1)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|encoder_semi_parallel:semi_parallel|ai_divider:ai_div|gateAnd2:nr                              ; gateAnd2              ; work         ;
+;          |selector2:sel|                 ; 8 (8)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|encoder_semi_parallel:semi_parallel|ai_divider:ai_div|selector2:sel                            ; selector2             ; work         ;
+;       |flipFlopD:final2|                 ; 0 (0)               ; 1 (1)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|encoder_semi_parallel:semi_parallel|flipFlopD:final2                                           ; flipFlopD             ; work         ;
+;       |gateNOr4:final1|                  ; 1 (1)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|encoder_semi_parallel:semi_parallel|gateNOr4:final1                                            ; gateNOr4              ; work         ;
+;       |non_delayer:nd|                   ; 2 (1)               ; 1 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|encoder_semi_parallel:semi_parallel|non_delayer:nd                                             ; non_delayer           ; work         ;
+;          |flipFlopT:ff0|                 ; 1 (0)               ; 1 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|encoder_semi_parallel:semi_parallel|non_delayer:nd|flipFlopT:ff0                               ; flipFlopT             ; work         ;
+;             |flipFlopD:andd1|            ; 1 (1)               ; 1 (1)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|encoder_semi_parallel:semi_parallel|non_delayer:nd|flipFlopT:ff0|flipFlopD:andd1               ; flipFlopD             ; work         ;
+;       |reverse_counter_15_0:counter|     ; 4 (0)               ; 4 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter                               ; reverse_counter_15_0  ; work         ;
+;          |flipFlopT:ff0|                 ; 1 (0)               ; 1 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter|flipFlopT:ff0                 ; flipFlopT             ; work         ;
+;             |flipFlopD:andd1|            ; 1 (1)               ; 1 (1)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter|flipFlopT:ff0|flipFlopD:andd1 ; flipFlopD             ; work         ;
+;          |flipFlopT:ff1|                 ; 1 (0)               ; 1 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter|flipFlopT:ff1                 ; flipFlopT             ; work         ;
+;             |flipFlopD:andd1|            ; 1 (1)               ; 1 (1)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter|flipFlopT:ff1|flipFlopD:andd1 ; flipFlopD             ; work         ;
+;          |flipFlopT:ff2|                 ; 1 (0)               ; 1 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter|flipFlopT:ff2                 ; flipFlopT             ; work         ;
+;             |flipFlopD:andd1|            ; 1 (1)               ; 1 (1)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter|flipFlopT:ff2|flipFlopD:andd1 ; flipFlopD             ; work         ;
+;          |flipFlopT:ff3|                 ; 1 (0)               ; 1 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter|flipFlopT:ff3                 ; flipFlopT             ; work         ;
+;             |flipFlopD:andd1|            ; 1 (1)               ; 1 (1)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter|flipFlopT:ff3|flipFlopD:andd1 ; flipFlopD             ; work         ;
+;       |xfo:xors|                         ; 8 (0)               ; 8 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|encoder_semi_parallel:semi_parallel|xfo:xors                                                   ; xfo                   ; work         ;
+;          |flipFlopT:fft1|                ; 1 (0)               ; 1 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft1                                    ; flipFlopT             ; work         ;
+;             |flipFlopD:andd1|            ; 1 (1)               ; 1 (1)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft1|flipFlopD:andd1                    ; flipFlopD             ; work         ;
+;          |flipFlopT:fft2|                ; 1 (0)               ; 1 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft2                                    ; flipFlopT             ; work         ;
+;             |flipFlopD:andd1|            ; 1 (1)               ; 1 (1)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft2|flipFlopD:andd1                    ; flipFlopD             ; work         ;
+;          |flipFlopT:fft3|                ; 1 (0)               ; 1 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft3                                    ; flipFlopT             ; work         ;
+;             |flipFlopD:andd1|            ; 1 (1)               ; 1 (1)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft3|flipFlopD:andd1                    ; flipFlopD             ; work         ;
+;          |flipFlopT:fft4|                ; 1 (0)               ; 1 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft4                                    ; flipFlopT             ; work         ;
+;             |flipFlopD:andd1|            ; 1 (1)               ; 1 (1)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft4|flipFlopD:andd1                    ; flipFlopD             ; work         ;
+;          |flipFlopT:fft5|                ; 1 (0)               ; 1 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft5                                    ; flipFlopT             ; work         ;
+;             |flipFlopD:andd1|            ; 1 (1)               ; 1 (1)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft5|flipFlopD:andd1                    ; flipFlopD             ; work         ;
+;          |flipFlopT:fft6|                ; 1 (0)               ; 1 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft6                                    ; flipFlopT             ; work         ;
+;             |flipFlopD:andd1|            ; 1 (1)               ; 1 (1)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft6|flipFlopD:andd1                    ; flipFlopD             ; work         ;
+;          |flipFlopT:fft7|                ; 1 (0)               ; 1 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft7                                    ; flipFlopT             ; work         ;
+;             |flipFlopD:andd1|            ; 1 (1)               ; 1 (1)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft7|flipFlopD:andd1                    ; flipFlopD             ; work         ;
+;          |flipFlopT:fft8|                ; 1 (0)               ; 1 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft8                                    ; flipFlopT             ; work         ;
+;             |flipFlopD:andd1|            ; 1 (1)               ; 1 (1)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft8|flipFlopD:andd1                    ; flipFlopD             ; work         ;
+;    |mux2to1:final|                       ; 2 (2)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|mux2to1:final                                                                                  ; mux2to1               ; work         ;
+;    |rserializer:serializer|              ; 7 (0)               ; 3 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|rserializer:serializer                                                                         ; rserializer           ; work         ;
+;       |mux8to1:mux|                      ; 4 (0)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|rserializer:serializer|mux8to1:mux                                                             ; mux8to1               ; work         ;
+;          |mux4to1:res2|                  ; 4 (0)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|rserializer:serializer|mux8to1:mux|mux4to1:res2                                                ; mux4to1               ; work         ;
+;             |mux2to1:final|              ; 4 (4)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|rserializer:serializer|mux8to1:mux|mux4to1:res2|mux2to1:final                                  ; mux2to1               ; work         ;
+;       |reverse_counter_7_0:counter|      ; 3 (0)               ; 3 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|rserializer:serializer|reverse_counter_7_0:counter                                             ; reverse_counter_7_0   ; work         ;
+;          |flipFlopT:ff0|                 ; 1 (0)               ; 1 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|rserializer:serializer|reverse_counter_7_0:counter|flipFlopT:ff0                               ; flipFlopT             ; work         ;
+;             |flipFlopD:andd1|            ; 1 (1)               ; 1 (1)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|rserializer:serializer|reverse_counter_7_0:counter|flipFlopT:ff0|flipFlopD:andd1               ; flipFlopD             ; work         ;
+;          |flipFlopT:ff1|                 ; 1 (0)               ; 1 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|rserializer:serializer|reverse_counter_7_0:counter|flipFlopT:ff1                               ; flipFlopT             ; work         ;
+;             |flipFlopD:andd1|            ; 1 (1)               ; 1 (1)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|rserializer:serializer|reverse_counter_7_0:counter|flipFlopT:ff1|flipFlopD:andd1               ; flipFlopD             ; work         ;
+;          |flipFlopT:ff2|                 ; 1 (0)               ; 1 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|rserializer:serializer|reverse_counter_7_0:counter|flipFlopT:ff2                               ; flipFlopT             ; work         ;
+;             |flipFlopD:andd1|            ; 1 (1)               ; 1 (1)                     ; 0           ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |encoder_serial|rserializer:serializer|reverse_counter_7_0:counter|flipFlopT:ff2|flipFlopD:andd1               ; flipFlopD             ; work         ;
++------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+-----------+------+--------------+----------------------------------------------------------------------------------------------------------------+-----------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
-
-
-+------------------------------------------------------------+
-; Logic Cells Representing Combinational Loops               ;
-+--------------------------------------------------------+---+
-; Logic Cell Name                                        ;   ;
-+--------------------------------------------------------+---+
-; gateNOr2:norr|y~0                                      ;   ;
-; gateNOr2:norr1|y~0                                     ;   ;
-; Number of logic cells representing combinational loops ; 2 ;
-+--------------------------------------------------------+---+
-Note: All cells listed above may not be present at the end of synthesis due to various synthesis optimizations.
 
 
 +------------------------------------------------------+
@@ -222,14 +286,169 @@ Note: All cells listed above may not be present at the end of synthesis due to v
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 0     ;
+; Total registers                              ; 17    ;
 ; Number of registers using Synchronous Clear  ; 0     ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Clear ; 17    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
 ; Number of registers using Clock Enable       ; 0     ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "rserializer:serializer|reverse_counter_7_0:counter|flipFlopT:ff2"                   ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; nq   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "rserializer:serializer|reverse_counter_7_0:counter|flipFlopT:ff1"                   ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; nq   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "rserializer:serializer|reverse_counter_7_0:counter|flipFlopT:ff0"                   ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; t    ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; nq   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "encoder_semi_parallel:semi_parallel|non_delayer:nd|flipFlopT:ff0"                   ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; nq   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft8"                                             ;
++------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                                                  ;
++------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; nq   ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+----------------------------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft7"                                             ;
++------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                                                  ;
++------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; nq   ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+----------------------------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft6"                                             ;
++------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                                                  ;
++------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; nq   ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+----------------------------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft5"                                             ;
++------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                                                  ;
++------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; nq   ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+----------------------------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft4"                                             ;
++------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                                                  ;
++------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; nq   ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+----------------------------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft3"                                             ;
++------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                                                  ;
++------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; nq   ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+----------------------------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft2"                                             ;
++------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                                                  ;
++------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; nq   ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+----------------------------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft1"                                             ;
++------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                                                  ;
++------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; nq   ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+----------------------------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter|flipFlopT:ff3"     ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; nq   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter|flipFlopT:ff2"     ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; nq   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter|flipFlopT:ff1"     ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; nq   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter|flipFlopT:ff0"     ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; t    ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; nq   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter"                         ;
++------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port       ; Type   ; Severity ; Details                                                                             ;
++------------+--------+----------+-------------------------------------------------------------------------------------+
+; enable_end ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------------+--------+----------+-------------------------------------------------------------------------------------+
 
 
 +-----------------------------------------------------+
@@ -238,12 +457,17 @@ Note: All cells listed above may not be present at the end of synthesis due to v
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
 ; boundary_port         ; 5                           ;
-; cycloneiii_lcell_comb ; 2                           ;
-;     normal            ; 2                           ;
-;         4 data inputs ; 2                           ;
+; cycloneiii_ff         ; 17                          ;
+;     CLR               ; 17                          ;
+; cycloneiii_lcell_comb ; 33                          ;
+;     normal            ; 33                          ;
+;         1 data inputs ; 2                           ;
+;         2 data inputs ; 4                           ;
+;         3 data inputs ; 10                          ;
+;         4 data inputs ; 17                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 1.00                        ;
-; Average LUT depth     ; 1.00                        ;
+; Max LUT depth         ; 4.00                        ;
+; Average LUT depth     ; 2.26                        ;
 +-----------------------+-----------------------------+
 
 
@@ -252,7 +476,7 @@ Note: All cells listed above may not be present at the end of synthesis due to v
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:00     ;
+; Top            ; 00:00:01     ;
 +----------------+--------------+
 
 
@@ -262,7 +486,7 @@ Note: All cells listed above may not be present at the end of synthesis due to v
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
-    Info: Processing started: Wed Dec 09 03:28:15 2020
+    Info: Processing started: Wed Dec 09 19:23:35 2020
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off encoder-checker-crc8 -c encoder-checker-crc8
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
@@ -288,7 +512,7 @@ Info (12021): Found 2 design units, including 1 entities, in source file xfo.vhd
     Info (12022): Found design unit 1: xfo-structure File: C:/Users/ruisantos/Desktop/serial/xfo.vhd Line: 11
     Info (12023): Found entity 1: xfo File: C:/Users/ruisantos/Desktop/serial/xfo.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file reverse_counter_15_0.vhd
-    Info (12022): Found design unit 1: reverse_counter_15_0-structural File: C:/Users/ruisantos/Desktop/serial/reverse_counter_15_0.vhd Line: 11
+    Info (12022): Found design unit 1: reverse_counter_15_0-structural File: C:/Users/ruisantos/Desktop/serial/reverse_counter_15_0.vhd Line: 12
     Info (12023): Found entity 1: reverse_counter_15_0 File: C:/Users/ruisantos/Desktop/serial/reverse_counter_15_0.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file reverse_counter_7_0.vhd
     Info (12022): Found design unit 1: reverse_counter_7_0-structural File: C:/Users/ruisantos/Desktop/serial/reverse_counter_7_0.vhd Line: 11
@@ -329,22 +553,50 @@ Info (12021): Found 2 design units, including 1 entities, in source file gateand
 Info (12021): Found 2 design units, including 1 entities, in source file gatenor2.vhd
     Info (12022): Found design unit 1: gateNOr2-behavior File: C:/Users/ruisantos/Desktop/serial/gateNOr2.vhd Line: 10
     Info (12023): Found entity 1: gateNOr2 File: C:/Users/ruisantos/Desktop/serial/gateNOr2.vhd Line: 5
-Info (12127): Elaborating entity "flipflopT" for the top level hierarchy
-Info (12128): Elaborating entity "gateAnd3" for hierarchy "gateAnd3:andd" File: C:/Users/ruisantos/Desktop/serial/flipflopT.vhd Line: 28
-Info (12128): Elaborating entity "gateNOr2" for hierarchy "gateNOr2:norr" File: C:/Users/ruisantos/Desktop/serial/flipflopT.vhd Line: 30
+Info (12021): Found 2 design units, including 1 entities, in source file gatexor2.vhd
+    Info (12022): Found design unit 1: gateXOR2-behavior File: C:/Users/ruisantos/Desktop/serial/gateXOR2.vhd Line: 9
+    Info (12023): Found entity 1: gateXOR2 File: C:/Users/ruisantos/Desktop/serial/gateXOR2.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file selector.vhd
+    Info (12022): Found design unit 1: selector-structural File: C:/Users/ruisantos/Desktop/serial/selector.vhd Line: 10
+    Info (12023): Found entity 1: selector File: C:/Users/ruisantos/Desktop/serial/selector.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file non_delayer.vhd
+    Info (12022): Found design unit 1: non_delayer-structure File: C:/Users/ruisantos/Desktop/serial/non_delayer.vhd Line: 10
+    Info (12023): Found entity 1: non_delayer File: C:/Users/ruisantos/Desktop/serial/non_delayer.vhd Line: 5
+Info (12127): Elaborating entity "encoder_serial" for the top level hierarchy
+Info (12128): Elaborating entity "encoder_semi_parallel" for hierarchy "encoder_semi_parallel:semi_parallel" File: C:/Users/ruisantos/Desktop/serial/encoder_serial.vhd Line: 38
+Warning (10036): Verilog HDL or VHDL warning at encoder_semi_parallel.vhd(18): object "s_enable_end" assigned a value but never read File: C:/Users/ruisantos/Desktop/serial/encoder_semi_parallel.vhd Line: 18
+Info (12128): Elaborating entity "reverse_counter_15_0" for hierarchy "encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter" File: C:/Users/ruisantos/Desktop/serial/encoder_semi_parallel.vhd Line: 62
+Warning (10036): Verilog HDL or VHDL warning at reverse_counter_15_0.vhd(15): object "nQ0" assigned a value but never read File: C:/Users/ruisantos/Desktop/serial/reverse_counter_15_0.vhd Line: 15
+Warning (10036): Verilog HDL or VHDL warning at reverse_counter_15_0.vhd(17): object "nQ1" assigned a value but never read File: C:/Users/ruisantos/Desktop/serial/reverse_counter_15_0.vhd Line: 17
+Warning (10036): Verilog HDL or VHDL warning at reverse_counter_15_0.vhd(20): object "nQ2" assigned a value but never read File: C:/Users/ruisantos/Desktop/serial/reverse_counter_15_0.vhd Line: 20
+Info (12128): Elaborating entity "flipFlopT" for hierarchy "encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter|flipFlopT:ff0" File: C:/Users/ruisantos/Desktop/serial/reverse_counter_15_0.vhd Line: 37
+Info (12128): Elaborating entity "gateXOR2" for hierarchy "encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter|flipFlopT:ff0|gateXOR2:xorr" File: C:/Users/ruisantos/Desktop/serial/flipflopT.vhd Line: 27
+Info (12128): Elaborating entity "flipFlopD" for hierarchy "encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter|flipFlopT:ff0|flipFlopD:andd1" File: C:/Users/ruisantos/Desktop/serial/flipflopT.vhd Line: 28
+Info (12128): Elaborating entity "gateAnd2" for hierarchy "encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter|gateAnd2:andd" File: C:/Users/ruisantos/Desktop/serial/reverse_counter_15_0.vhd Line: 39
+Info (12128): Elaborating entity "ai_divider" for hierarchy "encoder_semi_parallel:semi_parallel|ai_divider:ai_div" File: C:/Users/ruisantos/Desktop/serial/encoder_semi_parallel.vhd Line: 63
+Info (12128): Elaborating entity "selector2" for hierarchy "encoder_semi_parallel:semi_parallel|ai_divider:ai_div|selector2:sel" File: C:/Users/ruisantos/Desktop/serial/ai_divider.vhd Line: 30
+Info (12128): Elaborating entity "xfo" for hierarchy "encoder_semi_parallel:semi_parallel|xfo:xors" File: C:/Users/ruisantos/Desktop/serial/encoder_semi_parallel.vhd Line: 64
+Info (12128): Elaborating entity "gateNOr4" for hierarchy "encoder_semi_parallel:semi_parallel|gateNOr4:final1" File: C:/Users/ruisantos/Desktop/serial/encoder_semi_parallel.vhd Line: 65
+Info (12128): Elaborating entity "non_delayer" for hierarchy "encoder_semi_parallel:semi_parallel|non_delayer:nd" File: C:/Users/ruisantos/Desktop/serial/encoder_semi_parallel.vhd Line: 68
+Info (12128): Elaborating entity "rserializer" for hierarchy "rserializer:serializer" File: C:/Users/ruisantos/Desktop/serial/encoder_serial.vhd Line: 39
+Info (12128): Elaborating entity "reverse_counter_7_0" for hierarchy "rserializer:serializer|reverse_counter_7_0:counter" File: C:/Users/ruisantos/Desktop/serial/rserializer.vhd Line: 35
+Warning (10036): Verilog HDL or VHDL warning at reverse_counter_7_0.vhd(14): object "nQ0" assigned a value but never read File: C:/Users/ruisantos/Desktop/serial/reverse_counter_7_0.vhd Line: 14
+Warning (10036): Verilog HDL or VHDL warning at reverse_counter_7_0.vhd(16): object "nQ1" assigned a value but never read File: C:/Users/ruisantos/Desktop/serial/reverse_counter_7_0.vhd Line: 16
+Info (12128): Elaborating entity "mux8to1" for hierarchy "rserializer:serializer|mux8to1:mux" File: C:/Users/ruisantos/Desktop/serial/rserializer.vhd Line: 36
+Info (12128): Elaborating entity "mux4to1" for hierarchy "rserializer:serializer|mux8to1:mux|mux4to1:res1" File: C:/Users/ruisantos/Desktop/serial/mux8to1.vhd Line: 29
+Info (12128): Elaborating entity "mux2to1" for hierarchy "rserializer:serializer|mux8to1:mux|mux4to1:res1|mux2to1:res1" File: C:/Users/ruisantos/Desktop/serial/mux4to1.vhd Line: 23
+Warning (12241): 8 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 1 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "nRst" File: C:/Users/ruisantos/Desktop/serial/flipflopT.vhd Line: 6
-Info (21057): Implemented 7 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 38 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 3 input pins
     Info (21059): Implemented 2 output pins
-    Info (21061): Implemented 2 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 3 warnings
-    Info: Peak virtual memory: 4851 megabytes
-    Info: Processing ended: Wed Dec 09 03:28:30 2020
-    Info: Elapsed time: 00:00:15
-    Info: Total CPU time (on all processors): 00:00:22
+    Info (21061): Implemented 33 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 8 warnings
+    Info: Peak virtual memory: 4858 megabytes
+    Info: Processing ended: Wed Dec 09 19:23:59 2020
+    Info: Elapsed time: 00:00:24
+    Info: Total CPU time (on all processors): 00:00:34
 
 

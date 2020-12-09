@@ -19,9 +19,9 @@
 -- the top level entity of the current Quartus project .The user can use this   
 -- testbench to simulate his design using a third-party simulation tool .       
 -- *****************************************************************************
--- Generated on "12/08/2020 21:38:08"
+-- Generated on "12/09/2020 13:19:02"
                                                              
--- Vhdl Test Bench(with test vectors) for design  :          mux4to1
+-- Vhdl Test Bench(with test vectors) for design  :          selector
 -- 
 -- Simulation tool : 3rd Party
 -- 
@@ -29,71 +29,69 @@
 LIBRARY ieee;                                               
 USE ieee.std_logic_1164.all;                                
 
-ENTITY mux4to1_vhd_vec_tst IS
-END mux4to1_vhd_vec_tst;
-ARCHITECTURE mux4to1_arch OF mux4to1_vhd_vec_tst IS
+ENTITY selector_vhd_vec_tst IS
+END selector_vhd_vec_tst;
+ARCHITECTURE selector_arch OF selector_vhd_vec_tst IS
 -- constants                                                 
 -- signals                                                   
-SIGNAL f : STD_LOGIC;
-SIGNAL i : STD_LOGIC_VECTOR(3 DOWNTO 0);
-SIGNAL sel : STD_LOGIC_VECTOR(1 DOWNTO 0);
-COMPONENT mux4to1
+SIGNAL a_enabler : STD_LOGIC_VECTOR(7 DOWNTO 0);
+SIGNAL count : STD_LOGIC_VECTOR(3 DOWNTO 0);
+COMPONENT selector
 	PORT (
-	f : OUT STD_LOGIC;
-	i : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
-	sel : IN STD_LOGIC_VECTOR(1 DOWNTO 0)
+	a_enabler : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+	count : IN STD_LOGIC_VECTOR(3 DOWNTO 0)
 	);
 END COMPONENT;
 BEGIN
-	i1 : mux4to1
+	i1 : selector
 	PORT MAP (
 -- list connections between master ports and signals
-	f => f,
-	i => i,
-	sel => sel
+	a_enabler => a_enabler,
+	count => count
 	);
--- i[3]
-t_prcs_i_3: PROCESS
+-- count[3]
+t_prcs_count_3: PROCESS
 BEGIN
-	i(3) <= '1';
+	count(3) <= '0';
+	WAIT FOR 400000 ps;
+	count(3) <= '1';
+	WAIT FOR 400000 ps;
+	count(3) <= '0';
 WAIT;
-END PROCESS t_prcs_i_3;
--- i[2]
-t_prcs_i_2: PROCESS
+END PROCESS t_prcs_count_3;
+-- count[2]
+t_prcs_count_2: PROCESS
 BEGIN
-	i(2) <= '0';
+	FOR i IN 1 TO 2
+	LOOP
+		count(2) <= '0';
+		WAIT FOR 200000 ps;
+		count(2) <= '1';
+		WAIT FOR 200000 ps;
+	END LOOP;
+	count(2) <= '0';
 WAIT;
-END PROCESS t_prcs_i_2;
--- i[1]
-t_prcs_i_1: PROCESS
+END PROCESS t_prcs_count_2;
+-- count[1]
+t_prcs_count_1: PROCESS
 BEGIN
-	i(1) <= '1';
-WAIT;
-END PROCESS t_prcs_i_1;
--- i[0]
-t_prcs_i_0: PROCESS
+LOOP
+	count(1) <= '0';
+	WAIT FOR 100000 ps;
+	count(1) <= '1';
+	WAIT FOR 100000 ps;
+	IF (NOW >= 1000000 ps) THEN WAIT; END IF;
+END LOOP;
+END PROCESS t_prcs_count_1;
+-- count[0]
+t_prcs_count_0: PROCESS
 BEGIN
-	i(0) <= '0';
-WAIT;
-END PROCESS t_prcs_i_0;
--- sel[1]
-t_prcs_sel_1: PROCESS
-BEGIN
-	sel(1) <= '1';
-	WAIT FOR 480000 ps;
-	sel(1) <= '0';
-WAIT;
-END PROCESS t_prcs_sel_1;
--- sel[0]
-t_prcs_sel_0: PROCESS
-BEGIN
-	sel(0) <= '1';
-	WAIT FOR 300000 ps;
-	sel(0) <= '0';
-	WAIT FOR 180000 ps;
-	sel(0) <= '1';
-	WAIT FOR 200000 ps;
-	sel(0) <= '0';
-WAIT;
-END PROCESS t_prcs_sel_0;
-END mux4to1_arch;
+LOOP
+	count(0) <= '0';
+	WAIT FOR 50000 ps;
+	count(0) <= '1';
+	WAIT FOR 50000 ps;
+	IF (NOW >= 1000000 ps) THEN WAIT; END IF;
+END LOOP;
+END PROCESS t_prcs_count_0;
+END selector_arch;

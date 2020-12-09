@@ -19,9 +19,9 @@
 -- the top level entity of the current Quartus project .The user can use this   
 -- testbench to simulate his design using a third-party simulation tool .       
 -- *****************************************************************************
--- Generated on "12/09/2020 03:12:46"
+-- Generated on "12/09/2020 16:39:44"
                                                              
--- Vhdl Test Bench(with test vectors) for design  :          flipFlopT
+-- Vhdl Test Bench(with test vectors) for design  :          non_delayer
 -- 
 -- Simulation tool : 3rd Party
 -- 
@@ -29,35 +29,44 @@
 LIBRARY ieee;                                               
 USE ieee.std_logic_1164.all;                                
 
-ENTITY flipFlopT_vhd_vec_tst IS
-END flipFlopT_vhd_vec_tst;
-ARCHITECTURE flipFlopT_arch OF flipFlopT_vhd_vec_tst IS
+ENTITY non_delayer_vhd_vec_tst IS
+END non_delayer_vhd_vec_tst;
+ARCHITECTURE non_delayer_arch OF non_delayer_vhd_vec_tst IS
 -- constants                                                 
 -- signals                                                   
 SIGNAL clk : STD_LOGIC;
-SIGNAL nQ : STD_LOGIC;
 SIGNAL nRst : STD_LOGIC;
-SIGNAL Q : STD_LOGIC;
+SIGNAL s : STD_LOGIC;
 SIGNAL T : STD_LOGIC;
-COMPONENT flipFlopT
+COMPONENT non_delayer
 	PORT (
 	clk : IN STD_LOGIC;
-	nQ : OUT STD_LOGIC;
 	nRst : IN STD_LOGIC;
-	Q : OUT STD_LOGIC;
+	s : OUT STD_LOGIC;
 	T : IN STD_LOGIC
 	);
 END COMPONENT;
 BEGIN
-	i1 : flipFlopT
+	i1 : non_delayer
 	PORT MAP (
 -- list connections between master ports and signals
 	clk => clk,
-	nQ => nQ,
 	nRst => nRst,
-	Q => Q,
+	s => s,
 	T => T
 	);
+
+-- clk
+t_prcs_clk: PROCESS
+BEGIN
+LOOP
+	clk <= '0';
+	WAIT FOR 25000 ps;
+	clk <= '1';
+	WAIT FOR 25000 ps;
+	IF (NOW >= 1000000 ps) THEN WAIT; END IF;
+END LOOP;
+END PROCESS t_prcs_clk;
 
 -- nRst
 t_prcs_nRst: PROCESS
@@ -66,34 +75,22 @@ BEGIN
 WAIT;
 END PROCESS t_prcs_nRst;
 
--- clk
-t_prcs_clk: PROCESS
-BEGIN
-	FOR i IN 1 TO 14
-	LOOP
-		clk <= '0';
-		WAIT FOR 35000 ps;
-		clk <= '1';
-		WAIT FOR 35000 ps;
-	END LOOP;
-	clk <= '0';
-WAIT;
-END PROCESS t_prcs_clk;
-
 -- T
 t_prcs_T: PROCESS
 BEGIN
-	T <= '1';
-	WAIT FOR 280000 ps;
 	T <= '0';
-	WAIT FOR 200000 ps;
+	WAIT FOR 150000 ps;
 	T <= '1';
-	WAIT FOR 280000 ps;
+	WAIT FOR 50000 ps;
 	T <= '0';
+	WAIT FOR 440000 ps;
+	T <= '1';
+	WAIT FOR 20000 ps;
+	T <= '0';
+	WAIT FOR 150000 ps;
+	T <= '1';
 	WAIT FOR 40000 ps;
-	T <= '1';
-	WAIT FOR 60000 ps;
 	T <= '0';
 WAIT;
 END PROCESS t_prcs_T;
-END flipFlopT_arch;
+END non_delayer_arch;

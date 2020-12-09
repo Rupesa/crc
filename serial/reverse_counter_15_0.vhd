@@ -5,7 +5,8 @@ USE ieee.numeric_std.all;
 ENTITY reverse_counter_15_0 IS
   PORT (clk: IN STD_LOGIC;
         nRst: IN STD_LOGIC;
-        count: OUT STD_LOGIC_VECTOR(3 downto 0));
+		  enable_end: OUT STD_LOGIC;
+        count: OUT STD_LOGIC_VECTOR(3 downto 0) := (others => '1'));
 END reverse_counter_15_0;
 
 architecture structural of reverse_counter_15_0 is
@@ -19,6 +20,7 @@ architecture structural of reverse_counter_15_0 is
 	signal nQ2 : std_logic;
 	signal and1 : std_logic;
 	signal Q3 : std_logic;
+	signal s_enable_end : std_logic := '0';
 
 	COMPONENT flipflopT
     PORT (clk, T: IN STD_LOGIC;
@@ -33,15 +35,17 @@ architecture structural of reverse_counter_15_0 is
 
 begin
     ff0  : flipflopT PORT MAP(clk=>clk, T=>'1', nRst=>nRst, Q=>Q0, nQ=>nQ0);
-	 ff1  : flipflopT PORT MAP(clk=>clk, T=>nQ0, nRst=>nRst, Q=>Q1, nQ=>nQ1);
-	 andd : gateAnd2 PORT MAP(x1=>nQ0, x2=>nQ1, y=>and0);
+	 ff1  : flipflopT PORT MAP(clk=>clk, T=>Q0, nRst=>nRst, Q=>Q1, nQ=>nQ1);
+	 andd : gateAnd2 PORT MAP(x1=>Q0, x2=>Q1, y=>and0);
 	 ff2  : flipflopT PORT MAP(clk=>clk, T=>and0, nRst=>nRst, Q=>Q2, nQ=>nQ2);
-	 andd2 : gateAnd2 PORT MAP(x1=>nQ2, x2=>and0, y=>and1);
+	 andd2 : gateAnd2 PORT MAP(x1=>Q2, x2=>and0, y=>and1);
 	 ff3  : flipflopT PORT MAP(clk=>clk, T=>and1, nRst=>nRst, Q=>Q3);
 	 
-	 count(3)<=Q3;
-	 count(2)<=Q2;
-	 count(1)<=Q1;
-	 count(0)<=Q0;
+	 count(3)<= not Q3;
+	 count(2)<= not Q2;
+	 count(1)<= not Q1;
+	 count(0)<= not Q0;
+	 s_enable_end<=Q0 OR s_enable_end;
+	 enable_end <= s_enable_end;
 	 
 end structural;

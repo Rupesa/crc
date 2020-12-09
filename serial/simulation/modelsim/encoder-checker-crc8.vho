@@ -17,7 +17,7 @@
 -- PROGRAM "Quartus Prime"
 -- VERSION "Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition"
 
--- DATE "12/09/2020 03:28:43"
+-- DATE "12/09/2020 19:24:30"
 
 -- 
 -- Device: Altera EP4CGX15BF14C6 Package FBGA169
@@ -70,30 +70,32 @@ ww_devpor <= devpor;
 END structure;
 
 
+LIBRARY ALTERA;
 LIBRARY CYCLONEIV;
 LIBRARY IEEE;
+USE ALTERA.ALTERA_PRIMITIVES_COMPONENTS.ALL;
 USE CYCLONEIV.CYCLONEIV_COMPONENTS.ALL;
 USE IEEE.STD_LOGIC_1164.ALL;
 
-ENTITY 	flipFlopT IS
+ENTITY 	encoder_serial IS
     PORT (
 	clk : IN std_logic;
-	T : IN std_logic;
-	nRst : IN std_logic;
-	Q : OUT std_logic;
-	nQ : OUT std_logic
+	nGRst : IN std_logic;
+	ain : IN std_logic;
+	ar : BUFFER std_logic;
+	ended : BUFFER std_logic
 	);
-END flipFlopT;
+END encoder_serial;
 
 -- Design Ports Information
--- nRst	=>  Location: PIN_C11,	 I/O Standard: 2.5 V,	 Current Strength: Default
--- Q	=>  Location: PIN_N6,	 I/O Standard: 2.5 V,	 Current Strength: Default
--- nQ	=>  Location: PIN_N4,	 I/O Standard: 2.5 V,	 Current Strength: Default
--- clk	=>  Location: PIN_L5,	 I/O Standard: 2.5 V,	 Current Strength: Default
--- T	=>  Location: PIN_M6,	 I/O Standard: 2.5 V,	 Current Strength: Default
+-- ar	=>  Location: PIN_L7,	 I/O Standard: 2.5 V,	 Current Strength: Default
+-- ended	=>  Location: PIN_L5,	 I/O Standard: 2.5 V,	 Current Strength: Default
+-- ain	=>  Location: PIN_M6,	 I/O Standard: 2.5 V,	 Current Strength: Default
+-- nGRst	=>  Location: PIN_J6,	 I/O Standard: 2.5 V,	 Current Strength: Default
+-- clk	=>  Location: PIN_J7,	 I/O Standard: 2.5 V,	 Current Strength: Default
 
 
-ARCHITECTURE structure OF flipFlopT IS
+ARCHITECTURE structure OF encoder_serial IS
 SIGNAL gnd : std_logic := '0';
 SIGNAL vcc : std_logic := '1';
 SIGNAL unknown : std_logic := 'X';
@@ -104,17 +106,69 @@ SIGNAL ww_devoe : std_logic;
 SIGNAL ww_devclrn : std_logic;
 SIGNAL ww_devpor : std_logic;
 SIGNAL ww_clk : std_logic;
-SIGNAL ww_T : std_logic;
-SIGNAL ww_nRst : std_logic;
-SIGNAL ww_Q : std_logic;
-SIGNAL ww_nQ : std_logic;
-SIGNAL \nRst~input_o\ : std_logic;
-SIGNAL \Q~output_o\ : std_logic;
-SIGNAL \nQ~output_o\ : std_logic;
+SIGNAL ww_nGRst : std_logic;
+SIGNAL ww_ain : std_logic;
+SIGNAL ww_ar : std_logic;
+SIGNAL ww_ended : std_logic;
+SIGNAL \nGRst~inputclkctrl_INCLK_bus\ : std_logic_vector(3 DOWNTO 0);
+SIGNAL \clk~inputclkctrl_INCLK_bus\ : std_logic_vector(3 DOWNTO 0);
+SIGNAL \ar~output_o\ : std_logic;
+SIGNAL \ended~output_o\ : std_logic;
 SIGNAL \clk~input_o\ : std_logic;
-SIGNAL \T~input_o\ : std_logic;
-SIGNAL \norr1|y~combout\ : std_logic;
-SIGNAL \norr|y~combout\ : std_logic;
+SIGNAL \clk~inputclkctrl_outclk\ : std_logic;
+SIGNAL \semi_parallel|counter|ff0|andd1|Q~0_combout\ : std_logic;
+SIGNAL \nGRst~input_o\ : std_logic;
+SIGNAL \nGRst~inputclkctrl_outclk\ : std_logic;
+SIGNAL \semi_parallel|counter|ff0|andd1|Q~q\ : std_logic;
+SIGNAL \semi_parallel|counter|ff1|andd1|Q~0_combout\ : std_logic;
+SIGNAL \semi_parallel|counter|ff1|andd1|Q~q\ : std_logic;
+SIGNAL \semi_parallel|counter|ff2|andd1|Q~0_combout\ : std_logic;
+SIGNAL \semi_parallel|counter|ff2|andd1|Q~q\ : std_logic;
+SIGNAL \semi_parallel|counter|ff3|andd1|Q~0_combout\ : std_logic;
+SIGNAL \semi_parallel|counter|ff3|andd1|Q~q\ : std_logic;
+SIGNAL \semi_parallel|final1|y~combout\ : std_logic;
+SIGNAL \semi_parallel|final2|Q~q\ : std_logic;
+SIGNAL \semi_parallel|nd|ff0|andd1|Q~0_combout\ : std_logic;
+SIGNAL \semi_parallel|nd|ff0|andd1|Q~q\ : std_logic;
+SIGNAL \semi_parallel|nd|s~combout\ : std_logic;
+SIGNAL \serializer|counter|ff0|andd1|Q~0_combout\ : std_logic;
+SIGNAL \serializer|counter|ff0|andd1|Q~q\ : std_logic;
+SIGNAL \serializer|counter|ff1|andd1|Q~0_combout\ : std_logic;
+SIGNAL \serializer|counter|ff1|andd1|Q~q\ : std_logic;
+SIGNAL \serializer|counter|ff2|andd1|Q~0_combout\ : std_logic;
+SIGNAL \serializer|counter|ff2|andd1|Q~q\ : std_logic;
+SIGNAL \semi_parallel|ai_div|sel|Mux6~0_combout\ : std_logic;
+SIGNAL \ain~input_o\ : std_logic;
+SIGNAL \semi_parallel|ai_div|nr|y~combout\ : std_logic;
+SIGNAL \semi_parallel|xors|fft7|andd1|Q~0_combout\ : std_logic;
+SIGNAL \semi_parallel|xors|fft7|andd1|Q~q\ : std_logic;
+SIGNAL \semi_parallel|ai_div|sel|Mux7~0_combout\ : std_logic;
+SIGNAL \semi_parallel|xors|fft8|andd1|Q~0_combout\ : std_logic;
+SIGNAL \semi_parallel|xors|fft8|andd1|Q~q\ : std_logic;
+SIGNAL \semi_parallel|ai_div|sel|Mux4~0_combout\ : std_logic;
+SIGNAL \semi_parallel|xors|fft5|andd1|Q~0_combout\ : std_logic;
+SIGNAL \semi_parallel|xors|fft5|andd1|Q~q\ : std_logic;
+SIGNAL \semi_parallel|ai_div|sel|Mux5~0_combout\ : std_logic;
+SIGNAL \semi_parallel|xors|fft6|andd1|Q~0_combout\ : std_logic;
+SIGNAL \semi_parallel|xors|fft6|andd1|Q~q\ : std_logic;
+SIGNAL \serializer|mux|res2|final|o~2_combout\ : std_logic;
+SIGNAL \serializer|mux|res2|final|o~3_combout\ : std_logic;
+SIGNAL \semi_parallel|ai_div|sel|Mux1~0_combout\ : std_logic;
+SIGNAL \semi_parallel|xors|fft2|andd1|Q~0_combout\ : std_logic;
+SIGNAL \semi_parallel|xors|fft2|andd1|Q~q\ : std_logic;
+SIGNAL \semi_parallel|ai_div|sel|Mux0~0_combout\ : std_logic;
+SIGNAL \semi_parallel|xors|fft1|andd1|Q~0_combout\ : std_logic;
+SIGNAL \semi_parallel|xors|fft1|andd1|Q~q\ : std_logic;
+SIGNAL \serializer|mux|res2|final|o~0_combout\ : std_logic;
+SIGNAL \semi_parallel|ai_div|sel|Mux2~0_combout\ : std_logic;
+SIGNAL \semi_parallel|xors|fft3|andd1|Q~0_combout\ : std_logic;
+SIGNAL \semi_parallel|xors|fft3|andd1|Q~q\ : std_logic;
+SIGNAL \semi_parallel|ai_div|sel|Mux3~0_combout\ : std_logic;
+SIGNAL \semi_parallel|xors|fft4|andd1|Q~0_combout\ : std_logic;
+SIGNAL \semi_parallel|xors|fft4|andd1|Q~q\ : std_logic;
+SIGNAL \serializer|mux|res2|final|o~1_combout\ : std_logic;
+SIGNAL \final|o~0_combout\ : std_logic;
+SIGNAL \final|o~1_combout\ : std_logic;
 
 COMPONENT hard_block
     PORT (
@@ -126,44 +180,48 @@ END COMPONENT;
 BEGIN
 
 ww_clk <= clk;
-ww_T <= T;
-ww_nRst <= nRst;
-Q <= ww_Q;
-nQ <= ww_nQ;
+ww_nGRst <= nGRst;
+ww_ain <= ain;
+ar <= ww_ar;
+ended <= ww_ended;
 ww_devoe <= devoe;
 ww_devclrn <= devclrn;
 ww_devpor <= devpor;
+
+\nGRst~inputclkctrl_INCLK_bus\ <= (vcc & vcc & vcc & \nGRst~input_o\);
+
+\clk~inputclkctrl_INCLK_bus\ <= (vcc & vcc & vcc & \clk~input_o\);
 auto_generated_inst : hard_block
 PORT MAP (
 	devoe => ww_devoe,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor);
 
--- Location: IOOBUF_X12_Y0_N2
-\Q~output\ : cycloneiv_io_obuf
+-- Location: IOOBUF_X14_Y0_N2
+\ar~output\ : cycloneiv_io_obuf
 -- pragma translate_off
 GENERIC MAP (
 	bus_hold => "false",
 	open_drain_output => "false")
 -- pragma translate_on
 PORT MAP (
-	i => \norr|y~combout\,
+	i => \final|o~1_combout\,
 	devoe => ww_devoe,
-	o => \Q~output_o\);
+	o => \ar~output_o\);
 
--- Location: IOOBUF_X10_Y0_N9
-\nQ~output\ : cycloneiv_io_obuf
+-- Location: IOOBUF_X14_Y0_N9
+\ended~output\ : cycloneiv_io_obuf
 -- pragma translate_off
 GENERIC MAP (
 	bus_hold => "false",
 	open_drain_output => "false")
 -- pragma translate_on
 PORT MAP (
-	i => \norr1|y~combout\,
+	i => \semi_parallel|nd|s~combout\,
 	devoe => ww_devoe,
-	o => \nQ~output_o\);
+	o => \ended~output_o\);
 
--- Location: IOIBUF_X14_Y0_N8
+-- Location: IOIBUF_X16_Y0_N15
 \clk~input\ : cycloneiv_io_ibuf
 -- pragma translate_off
 GENERIC MAP (
@@ -174,65 +232,861 @@ PORT MAP (
 	i => ww_clk,
 	o => \clk~input_o\);
 
+-- Location: CLKCTRL_G17
+\clk~inputclkctrl\ : cycloneiv_clkctrl
+-- pragma translate_off
+GENERIC MAP (
+	clock_type => "global clock",
+	ena_register_mode => "none")
+-- pragma translate_on
+PORT MAP (
+	inclk => \clk~inputclkctrl_INCLK_bus\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	outclk => \clk~inputclkctrl_outclk\);
+
+-- Location: LCCOMB_X15_Y4_N6
+\semi_parallel|counter|ff0|andd1|Q~0\ : cycloneiv_lcell_comb
+-- Equation(s):
+-- \semi_parallel|counter|ff0|andd1|Q~0_combout\ = !\semi_parallel|counter|ff0|andd1|Q~q\
+
+-- pragma translate_off
+GENERIC MAP (
+	lut_mask => "0000111100001111",
+	sum_lutc_input => "datac")
+-- pragma translate_on
+PORT MAP (
+	datac => \semi_parallel|counter|ff0|andd1|Q~q\,
+	combout => \semi_parallel|counter|ff0|andd1|Q~0_combout\);
+
+-- Location: IOIBUF_X16_Y0_N22
+\nGRst~input\ : cycloneiv_io_ibuf
+-- pragma translate_off
+GENERIC MAP (
+	bus_hold => "false",
+	simulate_z_as => "z")
+-- pragma translate_on
+PORT MAP (
+	i => ww_nGRst,
+	o => \nGRst~input_o\);
+
+-- Location: CLKCTRL_G19
+\nGRst~inputclkctrl\ : cycloneiv_clkctrl
+-- pragma translate_off
+GENERIC MAP (
+	clock_type => "global clock",
+	ena_register_mode => "none")
+-- pragma translate_on
+PORT MAP (
+	inclk => \nGRst~inputclkctrl_INCLK_bus\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	outclk => \nGRst~inputclkctrl_outclk\);
+
+-- Location: FF_X15_Y4_N7
+\semi_parallel|counter|ff0|andd1|Q\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \clk~inputclkctrl_outclk\,
+	d => \semi_parallel|counter|ff0|andd1|Q~0_combout\,
+	clrn => \nGRst~inputclkctrl_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \semi_parallel|counter|ff0|andd1|Q~q\);
+
+-- Location: LCCOMB_X14_Y4_N26
+\semi_parallel|counter|ff1|andd1|Q~0\ : cycloneiv_lcell_comb
+-- Equation(s):
+-- \semi_parallel|counter|ff1|andd1|Q~0_combout\ = \semi_parallel|counter|ff1|andd1|Q~q\ $ (\semi_parallel|counter|ff0|andd1|Q~q\)
+
+-- pragma translate_off
+GENERIC MAP (
+	lut_mask => "0000111111110000",
+	sum_lutc_input => "datac")
+-- pragma translate_on
+PORT MAP (
+	datac => \semi_parallel|counter|ff1|andd1|Q~q\,
+	datad => \semi_parallel|counter|ff0|andd1|Q~q\,
+	combout => \semi_parallel|counter|ff1|andd1|Q~0_combout\);
+
+-- Location: FF_X14_Y4_N27
+\semi_parallel|counter|ff1|andd1|Q\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \clk~inputclkctrl_outclk\,
+	d => \semi_parallel|counter|ff1|andd1|Q~0_combout\,
+	clrn => \nGRst~inputclkctrl_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \semi_parallel|counter|ff1|andd1|Q~q\);
+
+-- Location: LCCOMB_X14_Y4_N8
+\semi_parallel|counter|ff2|andd1|Q~0\ : cycloneiv_lcell_comb
+-- Equation(s):
+-- \semi_parallel|counter|ff2|andd1|Q~0_combout\ = \semi_parallel|counter|ff2|andd1|Q~q\ $ (((\semi_parallel|counter|ff1|andd1|Q~q\ & \semi_parallel|counter|ff0|andd1|Q~q\)))
+
+-- pragma translate_off
+GENERIC MAP (
+	lut_mask => "0101101011110000",
+	sum_lutc_input => "datac")
+-- pragma translate_on
+PORT MAP (
+	dataa => \semi_parallel|counter|ff1|andd1|Q~q\,
+	datac => \semi_parallel|counter|ff2|andd1|Q~q\,
+	datad => \semi_parallel|counter|ff0|andd1|Q~q\,
+	combout => \semi_parallel|counter|ff2|andd1|Q~0_combout\);
+
+-- Location: FF_X14_Y4_N9
+\semi_parallel|counter|ff2|andd1|Q\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \clk~inputclkctrl_outclk\,
+	d => \semi_parallel|counter|ff2|andd1|Q~0_combout\,
+	clrn => \nGRst~inputclkctrl_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \semi_parallel|counter|ff2|andd1|Q~q\);
+
+-- Location: LCCOMB_X14_Y4_N6
+\semi_parallel|counter|ff3|andd1|Q~0\ : cycloneiv_lcell_comb
+-- Equation(s):
+-- \semi_parallel|counter|ff3|andd1|Q~0_combout\ = \semi_parallel|counter|ff3|andd1|Q~q\ $ (((\semi_parallel|counter|ff1|andd1|Q~q\ & (\semi_parallel|counter|ff2|andd1|Q~q\ & \semi_parallel|counter|ff0|andd1|Q~q\))))
+
+-- pragma translate_off
+GENERIC MAP (
+	lut_mask => "0111100011110000",
+	sum_lutc_input => "datac")
+-- pragma translate_on
+PORT MAP (
+	dataa => \semi_parallel|counter|ff1|andd1|Q~q\,
+	datab => \semi_parallel|counter|ff2|andd1|Q~q\,
+	datac => \semi_parallel|counter|ff3|andd1|Q~q\,
+	datad => \semi_parallel|counter|ff0|andd1|Q~q\,
+	combout => \semi_parallel|counter|ff3|andd1|Q~0_combout\);
+
+-- Location: FF_X14_Y4_N7
+\semi_parallel|counter|ff3|andd1|Q\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \clk~inputclkctrl_outclk\,
+	d => \semi_parallel|counter|ff3|andd1|Q~0_combout\,
+	clrn => \nGRst~inputclkctrl_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \semi_parallel|counter|ff3|andd1|Q~q\);
+
+-- Location: LCCOMB_X15_Y4_N16
+\semi_parallel|final1|y\ : cycloneiv_lcell_comb
+-- Equation(s):
+-- \semi_parallel|final1|y~combout\ = (\semi_parallel|counter|ff2|andd1|Q~q\ & (\semi_parallel|counter|ff0|andd1|Q~q\ & (\semi_parallel|counter|ff1|andd1|Q~q\ & \semi_parallel|counter|ff3|andd1|Q~q\)))
+
+-- pragma translate_off
+GENERIC MAP (
+	lut_mask => "1000000000000000",
+	sum_lutc_input => "datac")
+-- pragma translate_on
+PORT MAP (
+	dataa => \semi_parallel|counter|ff2|andd1|Q~q\,
+	datab => \semi_parallel|counter|ff0|andd1|Q~q\,
+	datac => \semi_parallel|counter|ff1|andd1|Q~q\,
+	datad => \semi_parallel|counter|ff3|andd1|Q~q\,
+	combout => \semi_parallel|final1|y~combout\);
+
+-- Location: FF_X15_Y4_N17
+\semi_parallel|final2|Q\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \clk~inputclkctrl_outclk\,
+	d => \semi_parallel|final1|y~combout\,
+	clrn => \nGRst~inputclkctrl_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \semi_parallel|final2|Q~q\);
+
+-- Location: LCCOMB_X15_Y4_N14
+\semi_parallel|nd|ff0|andd1|Q~0\ : cycloneiv_lcell_comb
+-- Equation(s):
+-- \semi_parallel|nd|ff0|andd1|Q~0_combout\ = \semi_parallel|nd|ff0|andd1|Q~q\ $ (\semi_parallel|final2|Q~q\)
+
+-- pragma translate_off
+GENERIC MAP (
+	lut_mask => "0000111111110000",
+	sum_lutc_input => "datac")
+-- pragma translate_on
+PORT MAP (
+	datac => \semi_parallel|nd|ff0|andd1|Q~q\,
+	datad => \semi_parallel|final2|Q~q\,
+	combout => \semi_parallel|nd|ff0|andd1|Q~0_combout\);
+
+-- Location: FF_X15_Y4_N15
+\semi_parallel|nd|ff0|andd1|Q\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \clk~inputclkctrl_outclk\,
+	d => \semi_parallel|nd|ff0|andd1|Q~0_combout\,
+	clrn => \nGRst~inputclkctrl_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \semi_parallel|nd|ff0|andd1|Q~q\);
+
+-- Location: LCCOMB_X15_Y4_N8
+\semi_parallel|nd|s\ : cycloneiv_lcell_comb
+-- Equation(s):
+-- \semi_parallel|nd|s~combout\ = (\semi_parallel|nd|ff0|andd1|Q~q\) # (\semi_parallel|final2|Q~q\)
+
+-- pragma translate_off
+GENERIC MAP (
+	lut_mask => "1111111111110000",
+	sum_lutc_input => "datac")
+-- pragma translate_on
+PORT MAP (
+	datac => \semi_parallel|nd|ff0|andd1|Q~q\,
+	datad => \semi_parallel|final2|Q~q\,
+	combout => \semi_parallel|nd|s~combout\);
+
+-- Location: LCCOMB_X15_Y4_N20
+\serializer|counter|ff0|andd1|Q~0\ : cycloneiv_lcell_comb
+-- Equation(s):
+-- \serializer|counter|ff0|andd1|Q~0_combout\ = !\serializer|counter|ff0|andd1|Q~q\
+
+-- pragma translate_off
+GENERIC MAP (
+	lut_mask => "0000111100001111",
+	sum_lutc_input => "datac")
+-- pragma translate_on
+PORT MAP (
+	datac => \serializer|counter|ff0|andd1|Q~q\,
+	combout => \serializer|counter|ff0|andd1|Q~0_combout\);
+
+-- Location: FF_X15_Y4_N21
+\serializer|counter|ff0|andd1|Q\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \clk~inputclkctrl_outclk\,
+	d => \serializer|counter|ff0|andd1|Q~0_combout\,
+	clrn => \semi_parallel|nd|s~combout\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \serializer|counter|ff0|andd1|Q~q\);
+
+-- Location: LCCOMB_X15_Y4_N22
+\serializer|counter|ff1|andd1|Q~0\ : cycloneiv_lcell_comb
+-- Equation(s):
+-- \serializer|counter|ff1|andd1|Q~0_combout\ = \serializer|counter|ff1|andd1|Q~q\ $ (\serializer|counter|ff0|andd1|Q~q\)
+
+-- pragma translate_off
+GENERIC MAP (
+	lut_mask => "0000111111110000",
+	sum_lutc_input => "datac")
+-- pragma translate_on
+PORT MAP (
+	datac => \serializer|counter|ff1|andd1|Q~q\,
+	datad => \serializer|counter|ff0|andd1|Q~q\,
+	combout => \serializer|counter|ff1|andd1|Q~0_combout\);
+
+-- Location: FF_X15_Y4_N23
+\serializer|counter|ff1|andd1|Q\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \clk~inputclkctrl_outclk\,
+	d => \serializer|counter|ff1|andd1|Q~0_combout\,
+	clrn => \semi_parallel|nd|s~combout\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \serializer|counter|ff1|andd1|Q~q\);
+
+-- Location: LCCOMB_X15_Y4_N18
+\serializer|counter|ff2|andd1|Q~0\ : cycloneiv_lcell_comb
+-- Equation(s):
+-- \serializer|counter|ff2|andd1|Q~0_combout\ = \serializer|counter|ff2|andd1|Q~q\ $ (((\serializer|counter|ff1|andd1|Q~q\ & \serializer|counter|ff0|andd1|Q~q\)))
+
+-- pragma translate_off
+GENERIC MAP (
+	lut_mask => "0111100001111000",
+	sum_lutc_input => "datac")
+-- pragma translate_on
+PORT MAP (
+	dataa => \serializer|counter|ff1|andd1|Q~q\,
+	datab => \serializer|counter|ff0|andd1|Q~q\,
+	datac => \serializer|counter|ff2|andd1|Q~q\,
+	combout => \serializer|counter|ff2|andd1|Q~0_combout\);
+
+-- Location: FF_X15_Y4_N19
+\serializer|counter|ff2|andd1|Q\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \clk~inputclkctrl_outclk\,
+	d => \serializer|counter|ff2|andd1|Q~0_combout\,
+	clrn => \semi_parallel|nd|s~combout\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \serializer|counter|ff2|andd1|Q~q\);
+
+-- Location: LCCOMB_X14_Y4_N0
+\semi_parallel|ai_div|sel|Mux6~0\ : cycloneiv_lcell_comb
+-- Equation(s):
+-- \semi_parallel|ai_div|sel|Mux6~0_combout\ = (\semi_parallel|counter|ff2|andd1|Q~q\ & (((!\semi_parallel|counter|ff1|andd1|Q~q\ & \semi_parallel|counter|ff0|andd1|Q~q\)) # (!\semi_parallel|counter|ff3|andd1|Q~q\))) # (!\semi_parallel|counter|ff2|andd1|Q~q\ 
+-- & (((!\semi_parallel|counter|ff3|andd1|Q~q\ & \semi_parallel|counter|ff0|andd1|Q~q\))))
+
+-- pragma translate_off
+GENERIC MAP (
+	lut_mask => "0100111100001100",
+	sum_lutc_input => "datac")
+-- pragma translate_on
+PORT MAP (
+	dataa => \semi_parallel|counter|ff1|andd1|Q~q\,
+	datab => \semi_parallel|counter|ff2|andd1|Q~q\,
+	datac => \semi_parallel|counter|ff3|andd1|Q~q\,
+	datad => \semi_parallel|counter|ff0|andd1|Q~q\,
+	combout => \semi_parallel|ai_div|sel|Mux6~0_combout\);
+
 -- Location: IOIBUF_X12_Y0_N8
-\T~input\ : cycloneiv_io_ibuf
+\ain~input\ : cycloneiv_io_ibuf
 -- pragma translate_off
 GENERIC MAP (
 	bus_hold => "false",
 	simulate_z_as => "z")
 -- pragma translate_on
 PORT MAP (
-	i => ww_T,
-	o => \T~input_o\);
+	i => ww_ain,
+	o => \ain~input_o\);
 
--- Location: LCCOMB_X12_Y1_N2
-\norr1|y\ : cycloneiv_lcell_comb
+-- Location: LCCOMB_X15_Y4_N24
+\semi_parallel|ai_div|nr|y\ : cycloneiv_lcell_comb
 -- Equation(s):
--- \norr1|y~combout\ = (!\norr|y~combout\ & (((!\norr1|y~combout\) # (!\T~input_o\)) # (!\clk~input_o\)))
+-- \semi_parallel|ai_div|nr|y~combout\ = (\ain~input_o\ & (!\semi_parallel|final2|Q~q\ & (!\semi_parallel|nd|ff0|andd1|Q~q\ & \nGRst~input_o\)))
 
 -- pragma translate_off
 GENERIC MAP (
-	lut_mask => "0000011100001111",
+	lut_mask => "0000001000000000",
 	sum_lutc_input => "datac")
 -- pragma translate_on
 PORT MAP (
-	dataa => \clk~input_o\,
-	datab => \T~input_o\,
-	datac => \norr|y~combout\,
-	datad => \norr1|y~combout\,
-	combout => \norr1|y~combout\);
+	dataa => \ain~input_o\,
+	datab => \semi_parallel|final2|Q~q\,
+	datac => \semi_parallel|nd|ff0|andd1|Q~q\,
+	datad => \nGRst~input_o\,
+	combout => \semi_parallel|ai_div|nr|y~combout\);
 
--- Location: LCCOMB_X12_Y1_N8
-\norr|y\ : cycloneiv_lcell_comb
+-- Location: LCCOMB_X14_Y4_N12
+\semi_parallel|xors|fft7|andd1|Q~0\ : cycloneiv_lcell_comb
 -- Equation(s):
--- \norr|y~combout\ = (!\norr1|y~combout\ & (((!\norr|y~combout\) # (!\T~input_o\)) # (!\clk~input_o\)))
+-- \semi_parallel|xors|fft7|andd1|Q~0_combout\ = \semi_parallel|xors|fft7|andd1|Q~q\ $ (((!\semi_parallel|ai_div|sel|Mux6~0_combout\ & \semi_parallel|ai_div|nr|y~combout\)))
 
 -- pragma translate_off
 GENERIC MAP (
-	lut_mask => "0000000001111111",
+	lut_mask => "1100001111110000",
 	sum_lutc_input => "datac")
 -- pragma translate_on
 PORT MAP (
-	dataa => \clk~input_o\,
-	datab => \T~input_o\,
-	datac => \norr|y~combout\,
-	datad => \norr1|y~combout\,
-	combout => \norr|y~combout\);
+	datab => \semi_parallel|ai_div|sel|Mux6~0_combout\,
+	datac => \semi_parallel|xors|fft7|andd1|Q~q\,
+	datad => \semi_parallel|ai_div|nr|y~combout\,
+	combout => \semi_parallel|xors|fft7|andd1|Q~0_combout\);
 
--- Location: IOIBUF_X31_Y31_N1
-\nRst~input\ : cycloneiv_io_ibuf
+-- Location: FF_X14_Y4_N13
+\semi_parallel|xors|fft7|andd1|Q\ : dffeas
 -- pragma translate_off
 GENERIC MAP (
-	bus_hold => "false",
-	simulate_z_as => "z")
+	is_wysiwyg => "true",
+	power_up => "low")
 -- pragma translate_on
 PORT MAP (
-	i => ww_nRst,
-	o => \nRst~input_o\);
+	clk => \clk~inputclkctrl_outclk\,
+	d => \semi_parallel|xors|fft7|andd1|Q~0_combout\,
+	clrn => \nGRst~inputclkctrl_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \semi_parallel|xors|fft7|andd1|Q~q\);
 
-ww_Q <= \Q~output_o\;
+-- Location: LCCOMB_X14_Y4_N30
+\semi_parallel|ai_div|sel|Mux7~0\ : cycloneiv_lcell_comb
+-- Equation(s):
+-- \semi_parallel|ai_div|sel|Mux7~0_combout\ = (\semi_parallel|counter|ff2|andd1|Q~q\ & (\semi_parallel|counter|ff3|andd1|Q~q\ & (\semi_parallel|counter|ff1|andd1|Q~q\ $ (\semi_parallel|counter|ff0|andd1|Q~q\)))) # (!\semi_parallel|counter|ff2|andd1|Q~q\ & 
+-- (\semi_parallel|counter|ff0|andd1|Q~q\ $ (((\semi_parallel|counter|ff1|andd1|Q~q\ & !\semi_parallel|counter|ff3|andd1|Q~q\)))))
 
-ww_nQ <= \nQ~output_o\;
+-- pragma translate_off
+GENERIC MAP (
+	lut_mask => "0111000110000010",
+	sum_lutc_input => "datac")
+-- pragma translate_on
+PORT MAP (
+	dataa => \semi_parallel|counter|ff1|andd1|Q~q\,
+	datab => \semi_parallel|counter|ff2|andd1|Q~q\,
+	datac => \semi_parallel|counter|ff3|andd1|Q~q\,
+	datad => \semi_parallel|counter|ff0|andd1|Q~q\,
+	combout => \semi_parallel|ai_div|sel|Mux7~0_combout\);
+
+-- Location: LCCOMB_X14_Y4_N22
+\semi_parallel|xors|fft8|andd1|Q~0\ : cycloneiv_lcell_comb
+-- Equation(s):
+-- \semi_parallel|xors|fft8|andd1|Q~0_combout\ = \semi_parallel|xors|fft8|andd1|Q~q\ $ (((!\semi_parallel|ai_div|sel|Mux7~0_combout\ & \semi_parallel|ai_div|nr|y~combout\)))
+
+-- pragma translate_off
+GENERIC MAP (
+	lut_mask => "1010010111110000",
+	sum_lutc_input => "datac")
+-- pragma translate_on
+PORT MAP (
+	dataa => \semi_parallel|ai_div|sel|Mux7~0_combout\,
+	datac => \semi_parallel|xors|fft8|andd1|Q~q\,
+	datad => \semi_parallel|ai_div|nr|y~combout\,
+	combout => \semi_parallel|xors|fft8|andd1|Q~0_combout\);
+
+-- Location: FF_X14_Y4_N23
+\semi_parallel|xors|fft8|andd1|Q\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \clk~inputclkctrl_outclk\,
+	d => \semi_parallel|xors|fft8|andd1|Q~0_combout\,
+	clrn => \nGRst~inputclkctrl_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \semi_parallel|xors|fft8|andd1|Q~q\);
+
+-- Location: LCCOMB_X14_Y4_N24
+\semi_parallel|ai_div|sel|Mux4~0\ : cycloneiv_lcell_comb
+-- Equation(s):
+-- \semi_parallel|ai_div|sel|Mux4~0_combout\ = (\semi_parallel|counter|ff1|andd1|Q~q\ & ((\semi_parallel|counter|ff2|andd1|Q~q\) # (\semi_parallel|counter|ff3|andd1|Q~q\ $ (!\semi_parallel|counter|ff0|andd1|Q~q\)))) # (!\semi_parallel|counter|ff1|andd1|Q~q\ 
+-- & (\semi_parallel|counter|ff3|andd1|Q~q\ & (\semi_parallel|counter|ff2|andd1|Q~q\ & \semi_parallel|counter|ff0|andd1|Q~q\)))
+
+-- pragma translate_off
+GENERIC MAP (
+	lut_mask => "1110100011000100",
+	sum_lutc_input => "datac")
+-- pragma translate_on
+PORT MAP (
+	dataa => \semi_parallel|counter|ff3|andd1|Q~q\,
+	datab => \semi_parallel|counter|ff1|andd1|Q~q\,
+	datac => \semi_parallel|counter|ff2|andd1|Q~q\,
+	datad => \semi_parallel|counter|ff0|andd1|Q~q\,
+	combout => \semi_parallel|ai_div|sel|Mux4~0_combout\);
+
+-- Location: LCCOMB_X14_Y4_N28
+\semi_parallel|xors|fft5|andd1|Q~0\ : cycloneiv_lcell_comb
+-- Equation(s):
+-- \semi_parallel|xors|fft5|andd1|Q~0_combout\ = \semi_parallel|xors|fft5|andd1|Q~q\ $ (((\semi_parallel|ai_div|sel|Mux4~0_combout\ & \semi_parallel|ai_div|nr|y~combout\)))
+
+-- pragma translate_off
+GENERIC MAP (
+	lut_mask => "0011110011110000",
+	sum_lutc_input => "datac")
+-- pragma translate_on
+PORT MAP (
+	datab => \semi_parallel|ai_div|sel|Mux4~0_combout\,
+	datac => \semi_parallel|xors|fft5|andd1|Q~q\,
+	datad => \semi_parallel|ai_div|nr|y~combout\,
+	combout => \semi_parallel|xors|fft5|andd1|Q~0_combout\);
+
+-- Location: FF_X14_Y4_N29
+\semi_parallel|xors|fft5|andd1|Q\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \clk~inputclkctrl_outclk\,
+	d => \semi_parallel|xors|fft5|andd1|Q~0_combout\,
+	clrn => \nGRst~inputclkctrl_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \semi_parallel|xors|fft5|andd1|Q~q\);
+
+-- Location: LCCOMB_X14_Y4_N10
+\semi_parallel|ai_div|sel|Mux5~0\ : cycloneiv_lcell_comb
+-- Equation(s):
+-- \semi_parallel|ai_div|sel|Mux5~0_combout\ = (\semi_parallel|counter|ff3|andd1|Q~q\ & (((!\semi_parallel|counter|ff2|andd1|Q~q\ & !\semi_parallel|counter|ff0|andd1|Q~q\)))) # (!\semi_parallel|counter|ff3|andd1|Q~q\ & (\semi_parallel|counter|ff1|andd1|Q~q\ 
+-- & (\semi_parallel|counter|ff2|andd1|Q~q\ $ (!\semi_parallel|counter|ff0|andd1|Q~q\))))
+
+-- pragma translate_off
+GENERIC MAP (
+	lut_mask => "0000100000110010",
+	sum_lutc_input => "datac")
+-- pragma translate_on
+PORT MAP (
+	dataa => \semi_parallel|counter|ff1|andd1|Q~q\,
+	datab => \semi_parallel|counter|ff2|andd1|Q~q\,
+	datac => \semi_parallel|counter|ff3|andd1|Q~q\,
+	datad => \semi_parallel|counter|ff0|andd1|Q~q\,
+	combout => \semi_parallel|ai_div|sel|Mux5~0_combout\);
+
+-- Location: LCCOMB_X14_Y4_N18
+\semi_parallel|xors|fft6|andd1|Q~0\ : cycloneiv_lcell_comb
+-- Equation(s):
+-- \semi_parallel|xors|fft6|andd1|Q~0_combout\ = \semi_parallel|xors|fft6|andd1|Q~q\ $ (((!\semi_parallel|ai_div|sel|Mux5~0_combout\ & \semi_parallel|ai_div|nr|y~combout\)))
+
+-- pragma translate_off
+GENERIC MAP (
+	lut_mask => "1010010111110000",
+	sum_lutc_input => "datac")
+-- pragma translate_on
+PORT MAP (
+	dataa => \semi_parallel|ai_div|sel|Mux5~0_combout\,
+	datac => \semi_parallel|xors|fft6|andd1|Q~q\,
+	datad => \semi_parallel|ai_div|nr|y~combout\,
+	combout => \semi_parallel|xors|fft6|andd1|Q~0_combout\);
+
+-- Location: FF_X14_Y4_N19
+\semi_parallel|xors|fft6|andd1|Q\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \clk~inputclkctrl_outclk\,
+	d => \semi_parallel|xors|fft6|andd1|Q~0_combout\,
+	clrn => \nGRst~inputclkctrl_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \semi_parallel|xors|fft6|andd1|Q~q\);
+
+-- Location: LCCOMB_X13_Y4_N24
+\serializer|mux|res2|final|o~2\ : cycloneiv_lcell_comb
+-- Equation(s):
+-- \serializer|mux|res2|final|o~2_combout\ = (\serializer|counter|ff0|andd1|Q~q\ & (((\serializer|counter|ff1|andd1|Q~q\) # (\semi_parallel|xors|fft6|andd1|Q~q\)))) # (!\serializer|counter|ff0|andd1|Q~q\ & (\semi_parallel|xors|fft5|andd1|Q~q\ & 
+-- (!\serializer|counter|ff1|andd1|Q~q\)))
+
+-- pragma translate_off
+GENERIC MAP (
+	lut_mask => "1010111010100100",
+	sum_lutc_input => "datac")
+-- pragma translate_on
+PORT MAP (
+	dataa => \serializer|counter|ff0|andd1|Q~q\,
+	datab => \semi_parallel|xors|fft5|andd1|Q~q\,
+	datac => \serializer|counter|ff1|andd1|Q~q\,
+	datad => \semi_parallel|xors|fft6|andd1|Q~q\,
+	combout => \serializer|mux|res2|final|o~2_combout\);
+
+-- Location: LCCOMB_X14_Y4_N4
+\serializer|mux|res2|final|o~3\ : cycloneiv_lcell_comb
+-- Equation(s):
+-- \serializer|mux|res2|final|o~3_combout\ = (\serializer|counter|ff1|andd1|Q~q\ & ((\serializer|mux|res2|final|o~2_combout\ & ((\semi_parallel|xors|fft8|andd1|Q~q\))) # (!\serializer|mux|res2|final|o~2_combout\ & (\semi_parallel|xors|fft7|andd1|Q~q\)))) # 
+-- (!\serializer|counter|ff1|andd1|Q~q\ & (((\serializer|mux|res2|final|o~2_combout\))))
+
+-- pragma translate_off
+GENERIC MAP (
+	lut_mask => "1111001110001000",
+	sum_lutc_input => "datac")
+-- pragma translate_on
+PORT MAP (
+	dataa => \semi_parallel|xors|fft7|andd1|Q~q\,
+	datab => \serializer|counter|ff1|andd1|Q~q\,
+	datac => \semi_parallel|xors|fft8|andd1|Q~q\,
+	datad => \serializer|mux|res2|final|o~2_combout\,
+	combout => \serializer|mux|res2|final|o~3_combout\);
+
+-- Location: LCCOMB_X14_Y4_N16
+\semi_parallel|ai_div|sel|Mux1~0\ : cycloneiv_lcell_comb
+-- Equation(s):
+-- \semi_parallel|ai_div|sel|Mux1~0_combout\ = (\semi_parallel|counter|ff3|andd1|Q~q\ & (((!\semi_parallel|counter|ff1|andd1|Q~q\ & !\semi_parallel|counter|ff2|andd1|Q~q\)) # (!\semi_parallel|counter|ff0|andd1|Q~q\))) # 
+-- (!\semi_parallel|counter|ff3|andd1|Q~q\ & ((\semi_parallel|counter|ff0|andd1|Q~q\ & ((\semi_parallel|counter|ff2|andd1|Q~q\))) # (!\semi_parallel|counter|ff0|andd1|Q~q\ & (\semi_parallel|counter|ff1|andd1|Q~q\))))
+
+-- pragma translate_off
+GENERIC MAP (
+	lut_mask => "0101001011101110",
+	sum_lutc_input => "datac")
+-- pragma translate_on
+PORT MAP (
+	dataa => \semi_parallel|counter|ff3|andd1|Q~q\,
+	datab => \semi_parallel|counter|ff1|andd1|Q~q\,
+	datac => \semi_parallel|counter|ff2|andd1|Q~q\,
+	datad => \semi_parallel|counter|ff0|andd1|Q~q\,
+	combout => \semi_parallel|ai_div|sel|Mux1~0_combout\);
+
+-- Location: LCCOMB_X14_Y4_N20
+\semi_parallel|xors|fft2|andd1|Q~0\ : cycloneiv_lcell_comb
+-- Equation(s):
+-- \semi_parallel|xors|fft2|andd1|Q~0_combout\ = \semi_parallel|xors|fft2|andd1|Q~q\ $ (((\semi_parallel|ai_div|sel|Mux1~0_combout\ & \semi_parallel|ai_div|nr|y~combout\)))
+
+-- pragma translate_off
+GENERIC MAP (
+	lut_mask => "0011110011110000",
+	sum_lutc_input => "datac")
+-- pragma translate_on
+PORT MAP (
+	datab => \semi_parallel|ai_div|sel|Mux1~0_combout\,
+	datac => \semi_parallel|xors|fft2|andd1|Q~q\,
+	datad => \semi_parallel|ai_div|nr|y~combout\,
+	combout => \semi_parallel|xors|fft2|andd1|Q~0_combout\);
+
+-- Location: FF_X14_Y4_N21
+\semi_parallel|xors|fft2|andd1|Q\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \clk~inputclkctrl_outclk\,
+	d => \semi_parallel|xors|fft2|andd1|Q~0_combout\,
+	clrn => \nGRst~inputclkctrl_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \semi_parallel|xors|fft2|andd1|Q~q\);
+
+-- Location: LCCOMB_X15_Y4_N2
+\semi_parallel|ai_div|sel|Mux0~0\ : cycloneiv_lcell_comb
+-- Equation(s):
+-- \semi_parallel|ai_div|sel|Mux0~0_combout\ = (\semi_parallel|counter|ff0|andd1|Q~q\ & ((\semi_parallel|counter|ff3|andd1|Q~q\ $ (\semi_parallel|counter|ff2|andd1|Q~q\)) # (!\semi_parallel|counter|ff1|andd1|Q~q\))) # (!\semi_parallel|counter|ff0|andd1|Q~q\ 
+-- & ((\semi_parallel|counter|ff3|andd1|Q~q\ & (!\semi_parallel|counter|ff1|andd1|Q~q\ & !\semi_parallel|counter|ff2|andd1|Q~q\)) # (!\semi_parallel|counter|ff3|andd1|Q~q\ & ((\semi_parallel|counter|ff2|andd1|Q~q\)))))
+
+-- pragma translate_off
+GENERIC MAP (
+	lut_mask => "0011101110001110",
+	sum_lutc_input => "datac")
+-- pragma translate_on
+PORT MAP (
+	dataa => \semi_parallel|counter|ff0|andd1|Q~q\,
+	datab => \semi_parallel|counter|ff3|andd1|Q~q\,
+	datac => \semi_parallel|counter|ff1|andd1|Q~q\,
+	datad => \semi_parallel|counter|ff2|andd1|Q~q\,
+	combout => \semi_parallel|ai_div|sel|Mux0~0_combout\);
+
+-- Location: LCCOMB_X15_Y4_N30
+\semi_parallel|xors|fft1|andd1|Q~0\ : cycloneiv_lcell_comb
+-- Equation(s):
+-- \semi_parallel|xors|fft1|andd1|Q~0_combout\ = \semi_parallel|xors|fft1|andd1|Q~q\ $ (((\semi_parallel|ai_div|nr|y~combout\ & \semi_parallel|ai_div|sel|Mux0~0_combout\)))
+
+-- pragma translate_off
+GENERIC MAP (
+	lut_mask => "0011110011110000",
+	sum_lutc_input => "datac")
+-- pragma translate_on
+PORT MAP (
+	datab => \semi_parallel|ai_div|nr|y~combout\,
+	datac => \semi_parallel|xors|fft1|andd1|Q~q\,
+	datad => \semi_parallel|ai_div|sel|Mux0~0_combout\,
+	combout => \semi_parallel|xors|fft1|andd1|Q~0_combout\);
+
+-- Location: FF_X15_Y4_N31
+\semi_parallel|xors|fft1|andd1|Q\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \clk~inputclkctrl_outclk\,
+	d => \semi_parallel|xors|fft1|andd1|Q~0_combout\,
+	clrn => \nGRst~inputclkctrl_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \semi_parallel|xors|fft1|andd1|Q~q\);
+
+-- Location: LCCOMB_X15_Y4_N12
+\serializer|mux|res2|final|o~0\ : cycloneiv_lcell_comb
+-- Equation(s):
+-- \serializer|mux|res2|final|o~0_combout\ = (\serializer|counter|ff0|andd1|Q~q\ & ((\semi_parallel|xors|fft2|andd1|Q~q\) # ((\serializer|counter|ff1|andd1|Q~q\)))) # (!\serializer|counter|ff0|andd1|Q~q\ & (((\semi_parallel|xors|fft1|andd1|Q~q\ & 
+-- !\serializer|counter|ff1|andd1|Q~q\))))
+
+-- pragma translate_off
+GENERIC MAP (
+	lut_mask => "1010101011011000",
+	sum_lutc_input => "datac")
+-- pragma translate_on
+PORT MAP (
+	dataa => \serializer|counter|ff0|andd1|Q~q\,
+	datab => \semi_parallel|xors|fft2|andd1|Q~q\,
+	datac => \semi_parallel|xors|fft1|andd1|Q~q\,
+	datad => \serializer|counter|ff1|andd1|Q~q\,
+	combout => \serializer|mux|res2|final|o~0_combout\);
+
+-- Location: LCCOMB_X15_Y4_N0
+\semi_parallel|ai_div|sel|Mux2~0\ : cycloneiv_lcell_comb
+-- Equation(s):
+-- \semi_parallel|ai_div|sel|Mux2~0_combout\ = (\semi_parallel|counter|ff3|andd1|Q~q\ & ((\semi_parallel|counter|ff0|andd1|Q~q\) # ((!\semi_parallel|counter|ff2|andd1|Q~q\)))) # (!\semi_parallel|counter|ff3|andd1|Q~q\ & (\semi_parallel|counter|ff1|andd1|Q~q\ 
+-- & ((\semi_parallel|counter|ff0|andd1|Q~q\) # (\semi_parallel|counter|ff2|andd1|Q~q\))))
+
+-- pragma translate_off
+GENERIC MAP (
+	lut_mask => "1011100011101100",
+	sum_lutc_input => "datac")
+-- pragma translate_on
+PORT MAP (
+	dataa => \semi_parallel|counter|ff0|andd1|Q~q\,
+	datab => \semi_parallel|counter|ff3|andd1|Q~q\,
+	datac => \semi_parallel|counter|ff1|andd1|Q~q\,
+	datad => \semi_parallel|counter|ff2|andd1|Q~q\,
+	combout => \semi_parallel|ai_div|sel|Mux2~0_combout\);
+
+-- Location: LCCOMB_X15_Y4_N28
+\semi_parallel|xors|fft3|andd1|Q~0\ : cycloneiv_lcell_comb
+-- Equation(s):
+-- \semi_parallel|xors|fft3|andd1|Q~0_combout\ = \semi_parallel|xors|fft3|andd1|Q~q\ $ (((\semi_parallel|ai_div|nr|y~combout\ & \semi_parallel|ai_div|sel|Mux2~0_combout\)))
+
+-- pragma translate_off
+GENERIC MAP (
+	lut_mask => "0011110011110000",
+	sum_lutc_input => "datac")
+-- pragma translate_on
+PORT MAP (
+	datab => \semi_parallel|ai_div|nr|y~combout\,
+	datac => \semi_parallel|xors|fft3|andd1|Q~q\,
+	datad => \semi_parallel|ai_div|sel|Mux2~0_combout\,
+	combout => \semi_parallel|xors|fft3|andd1|Q~0_combout\);
+
+-- Location: FF_X15_Y4_N29
+\semi_parallel|xors|fft3|andd1|Q\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \clk~inputclkctrl_outclk\,
+	d => \semi_parallel|xors|fft3|andd1|Q~0_combout\,
+	clrn => \nGRst~inputclkctrl_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \semi_parallel|xors|fft3|andd1|Q~q\);
+
+-- Location: LCCOMB_X14_Y4_N2
+\semi_parallel|ai_div|sel|Mux3~0\ : cycloneiv_lcell_comb
+-- Equation(s):
+-- \semi_parallel|ai_div|sel|Mux3~0_combout\ = (\semi_parallel|counter|ff1|andd1|Q~q\ & (!\semi_parallel|counter|ff0|andd1|Q~q\ & ((\semi_parallel|counter|ff3|andd1|Q~q\) # (\semi_parallel|counter|ff2|andd1|Q~q\)))) # (!\semi_parallel|counter|ff1|andd1|Q~q\ 
+-- & ((\semi_parallel|counter|ff3|andd1|Q~q\ & (\semi_parallel|counter|ff2|andd1|Q~q\)) # (!\semi_parallel|counter|ff3|andd1|Q~q\ & ((\semi_parallel|counter|ff0|andd1|Q~q\)))))
+
+-- pragma translate_off
+GENERIC MAP (
+	lut_mask => "0011000111101000",
+	sum_lutc_input => "datac")
+-- pragma translate_on
+PORT MAP (
+	dataa => \semi_parallel|counter|ff3|andd1|Q~q\,
+	datab => \semi_parallel|counter|ff1|andd1|Q~q\,
+	datac => \semi_parallel|counter|ff2|andd1|Q~q\,
+	datad => \semi_parallel|counter|ff0|andd1|Q~q\,
+	combout => \semi_parallel|ai_div|sel|Mux3~0_combout\);
+
+-- Location: LCCOMB_X14_Y4_N14
+\semi_parallel|xors|fft4|andd1|Q~0\ : cycloneiv_lcell_comb
+-- Equation(s):
+-- \semi_parallel|xors|fft4|andd1|Q~0_combout\ = \semi_parallel|xors|fft4|andd1|Q~q\ $ (((\semi_parallel|ai_div|sel|Mux3~0_combout\ & \semi_parallel|ai_div|nr|y~combout\)))
+
+-- pragma translate_off
+GENERIC MAP (
+	lut_mask => "0011110011110000",
+	sum_lutc_input => "datac")
+-- pragma translate_on
+PORT MAP (
+	datab => \semi_parallel|ai_div|sel|Mux3~0_combout\,
+	datac => \semi_parallel|xors|fft4|andd1|Q~q\,
+	datad => \semi_parallel|ai_div|nr|y~combout\,
+	combout => \semi_parallel|xors|fft4|andd1|Q~0_combout\);
+
+-- Location: FF_X14_Y4_N15
+\semi_parallel|xors|fft4|andd1|Q\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \clk~inputclkctrl_outclk\,
+	d => \semi_parallel|xors|fft4|andd1|Q~0_combout\,
+	clrn => \nGRst~inputclkctrl_outclk\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \semi_parallel|xors|fft4|andd1|Q~q\);
+
+-- Location: LCCOMB_X15_Y4_N26
+\serializer|mux|res2|final|o~1\ : cycloneiv_lcell_comb
+-- Equation(s):
+-- \serializer|mux|res2|final|o~1_combout\ = (\serializer|mux|res2|final|o~0_combout\ & (((\semi_parallel|xors|fft4|andd1|Q~q\)) # (!\serializer|counter|ff1|andd1|Q~q\))) # (!\serializer|mux|res2|final|o~0_combout\ & (\serializer|counter|ff1|andd1|Q~q\ & 
+-- (\semi_parallel|xors|fft3|andd1|Q~q\)))
+
+-- pragma translate_off
+GENERIC MAP (
+	lut_mask => "1110101001100010",
+	sum_lutc_input => "datac")
+-- pragma translate_on
+PORT MAP (
+	dataa => \serializer|mux|res2|final|o~0_combout\,
+	datab => \serializer|counter|ff1|andd1|Q~q\,
+	datac => \semi_parallel|xors|fft3|andd1|Q~q\,
+	datad => \semi_parallel|xors|fft4|andd1|Q~q\,
+	combout => \serializer|mux|res2|final|o~1_combout\);
+
+-- Location: LCCOMB_X15_Y4_N4
+\final|o~0\ : cycloneiv_lcell_comb
+-- Equation(s):
+-- \final|o~0_combout\ = (\semi_parallel|nd|s~combout\ & (!\serializer|counter|ff2|andd1|Q~q\ & ((\serializer|mux|res2|final|o~1_combout\)))) # (!\semi_parallel|nd|s~combout\ & (((\ain~input_o\))))
+
+-- pragma translate_off
+GENERIC MAP (
+	lut_mask => "0111001001010000",
+	sum_lutc_input => "datac")
+-- pragma translate_on
+PORT MAP (
+	dataa => \semi_parallel|nd|s~combout\,
+	datab => \serializer|counter|ff2|andd1|Q~q\,
+	datac => \ain~input_o\,
+	datad => \serializer|mux|res2|final|o~1_combout\,
+	combout => \final|o~0_combout\);
+
+-- Location: LCCOMB_X15_Y4_N10
+\final|o~1\ : cycloneiv_lcell_comb
+-- Equation(s):
+-- \final|o~1_combout\ = (\final|o~0_combout\) # ((\semi_parallel|nd|s~combout\ & (\serializer|counter|ff2|andd1|Q~q\ & \serializer|mux|res2|final|o~3_combout\)))
+
+-- pragma translate_off
+GENERIC MAP (
+	lut_mask => "1111111110000000",
+	sum_lutc_input => "datac")
+-- pragma translate_on
+PORT MAP (
+	dataa => \semi_parallel|nd|s~combout\,
+	datab => \serializer|counter|ff2|andd1|Q~q\,
+	datac => \serializer|mux|res2|final|o~3_combout\,
+	datad => \final|o~0_combout\,
+	combout => \final|o~1_combout\);
+
+ww_ar <= \ar~output_o\;
+
+ww_ended <= \ended~output_o\;
 END structure;
 
 

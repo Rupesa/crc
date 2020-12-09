@@ -11,9 +11,13 @@ END encoder_semi_parallel;
 
 ARCHITECTURE structure OF encoder_semi_parallel IS
 
+	 signal s_ended2, s_ended3, s_ended4: std_logic;
     signal a_index:     std_logic_vector(3 downto 0);
     signal selected_as: std_logic_vector(7 downto 0);
 	 signal s_ended: std_logic;
+	 signal s_enable_end: std_logic;
+	 signal n_ended : std_logic := '1';
+	 signal s_a : std_logic;
 
   COMPONENT ai_divider
     PORT (  nrst:        in std_logic;
@@ -31,6 +35,7 @@ ARCHITECTURE structure OF encoder_semi_parallel IS
   COMPONENT reverse_counter_15_0
     PORT (  clk:    IN STD_LOGIC;
             nrst:   IN STD_LOGIC;
+				enable_end: OUT STD_LOGIC;
             count: OUT STD_LOGIC_VECTOR(3 downto 0));
   END COMPONENT;
 
@@ -44,13 +49,23 @@ ARCHITECTURE structure OF encoder_semi_parallel IS
         nRst: IN STD_LOGIC;
         Q: OUT STD_LOGIC);
 	END COMPONENT;
+	
+	COMPONENT non_delayer
+	PORT (nRst, T, clk: IN STD_LOGIC;
+        s:  OUT STD_LOGIC);
+  END COMPONENT;
 
 BEGIN
-
-  counter: reverse_counter_15_0 PORT MAP (clk=>clk, nrst=>nRst, count=>a_index);
-  ai_div : ai_divider PORT MAP(nrst=>nRst, index=>a_index, ai=>a, a_relevance=>selected_as);
+	
+	n_ended <= not s_ended4;
+	s_a <= n_ended and a;
+  counter: reverse_counter_15_0 PORT MAP (clk=>clk, nrst=>nRst, enable_end=>s_enable_end, count=>a_index);
+  ai_div : ai_divider PORT MAP(nrst=>nRst, index=>a_index, ai=>s_a, a_relevance=>selected_as);
   xors   : xfo PORT MAP(nrst=>nRst, clk=>clk, a=>selected_as, r=>r);
   final1  : gateNOr4 PORT MAP(x1=>a_index(0), x2=>a_index(1), x3=>a_index(2), x4=>a_index(3), y=>s_ended);
-  final2 : flipflopD PORT MAP(clk=>clk, nRst=>nRst, D=>s_ended, Q=>ended);
+  final2 : flipflopD PORT MAP(clk=>clk, nRst=>nRst, D=>s_ended, Q=>s_ended2);
+  --final3 : flipflopD PORT MAP(clk=>clk, nRst=>nRst, D=>s_ended2, Q=>s_ended3);
+  nd     : non_delayer PORT MAP (clk=>clk, T=>s_ended2, nRst=>nRst, s=>s_ended4);
+  ended <= s_ended4;
   
 END structure;

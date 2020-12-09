@@ -19,9 +19,9 @@
 -- the top level entity of the current Quartus project .The user can use this   
 -- testbench to simulate his design using a third-party simulation tool .       
 -- *****************************************************************************
--- Generated on "12/09/2020 02:49:32"
+-- Generated on "12/09/2020 16:35:14"
                                                              
--- Vhdl Test Bench(with test vectors) for design  :          gateAnd3
+-- Vhdl Test Bench(with test vectors) for design  :          non_delayer
 -- 
 -- Simulation tool : 3rd Party
 -- 
@@ -29,67 +29,60 @@
 LIBRARY ieee;                                               
 USE ieee.std_logic_1164.all;                                
 
-ENTITY gateAnd3_vhd_vec_tst IS
-END gateAnd3_vhd_vec_tst;
-ARCHITECTURE gateAnd3_arch OF gateAnd3_vhd_vec_tst IS
+ENTITY non_delayer_vhd_vec_tst IS
+END non_delayer_vhd_vec_tst;
+ARCHITECTURE non_delayer_arch OF non_delayer_vhd_vec_tst IS
 -- constants                                                 
 -- signals                                                   
-SIGNAL x0 : STD_LOGIC;
-SIGNAL x1 : STD_LOGIC;
-SIGNAL x2 : STD_LOGIC;
-SIGNAL y : STD_LOGIC;
-COMPONENT gateAnd3
+SIGNAL clk : STD_LOGIC;
+SIGNAL nRst : STD_LOGIC;
+SIGNAL s : STD_LOGIC;
+SIGNAL T : STD_LOGIC;
+COMPONENT non_delayer
 	PORT (
-	x0 : IN STD_LOGIC;
-	x1 : IN STD_LOGIC;
-	x2 : IN STD_LOGIC;
-	y : OUT STD_LOGIC
+	clk : IN STD_LOGIC;
+	nRst : IN STD_LOGIC;
+	s : OUT STD_LOGIC;
+	T : IN STD_LOGIC
 	);
 END COMPONENT;
 BEGIN
-	i1 : gateAnd3
+	i1 : non_delayer
 	PORT MAP (
 -- list connections between master ports and signals
-	x0 => x0,
-	x1 => x1,
-	x2 => x2,
-	y => y
+	clk => clk,
+	nRst => nRst,
+	s => s,
+	T => T
 	);
 
--- x0
-t_prcs_x0: PROCESS
+-- clk
+t_prcs_clk: PROCESS
 BEGIN
-	x0 <= '0';
-	WAIT FOR 20000 ps;
-	x0 <= '1';
-	WAIT FOR 420000 ps;
-	x0 <= '0';
-	WAIT FOR 100000 ps;
-	x0 <= '1';
+LOOP
+	clk <= '0';
+	WAIT FOR 25000 ps;
+	clk <= '1';
+	WAIT FOR 25000 ps;
+	IF (NOW >= 1000000 ps) THEN WAIT; END IF;
+END LOOP;
+END PROCESS t_prcs_clk;
+
+-- nRst
+t_prcs_nRst: PROCESS
+BEGIN
+	nRst <= '1';
+WAIT;
+END PROCESS t_prcs_nRst;
+
+-- T
+t_prcs_T: PROCESS
+BEGIN
+	T <= '0';
+	WAIT FOR 160000 ps;
+	T <= '1';
 	WAIT FOR 40000 ps;
-	x0 <= '0';
+	T <= '0';
 WAIT;
-END PROCESS t_prcs_x0;
-
--- x1
-t_prcs_x1: PROCESS
-BEGIN
-	x1 <= '0';
-	WAIT FOR 240000 ps;
-	x1 <= '1';
-	WAIT FOR 380000 ps;
-	x1 <= '0';
-WAIT;
-END PROCESS t_prcs_x1;
-
--- x2
-t_prcs_x2: PROCESS
-BEGIN
-	x2 <= '0';
-	WAIT FOR 520000 ps;
-	x2 <= '1';
-	WAIT FOR 400000 ps;
-	x2 <= '0';
-WAIT;
-END PROCESS t_prcs_x2;
-END gateAnd3_arch;
+END PROCESS t_prcs_T;
+END non_delayer_arch;

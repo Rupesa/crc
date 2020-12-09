@@ -1,12 +1,12 @@
-Analysis & Synthesis Status : Successful - Wed Dec 09 03:28:30 2020
+Analysis & Synthesis Status : Successful - Wed Dec 09 19:23:58 2020
 Quartus Prime Version : 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 Revision Name : encoder-checker-crc8
-Top-level Entity Name : flipFlopT
+Top-level Entity Name : encoder_serial
 Family : Cyclone IV GX
-Total logic elements : 2
-    Total combinational functions : 2
-    Dedicated logic registers : 0
-Total registers : 0
+Total logic elements : 33
+    Total combinational functions : 33
+    Dedicated logic registers : 17
+Total registers : 17
 Total pins : 5
 Total virtual pins : 0
 Total memory bits : 0

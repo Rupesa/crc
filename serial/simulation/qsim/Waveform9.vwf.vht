@@ -19,9 +19,9 @@
 -- the top level entity of the current Quartus project .The user can use this   
 -- testbench to simulate his design using a third-party simulation tool .       
 -- *****************************************************************************
--- Generated on "12/09/2020 03:17:31"
+-- Generated on "12/09/2020 16:51:52"
                                                              
--- Vhdl Test Bench(with test vectors) for design  :          gateNOr2
+-- Vhdl Test Bench(with test vectors) for design  :          encoder_semi_parallel
 -- 
 -- Simulation tool : 3rd Party
 -- 
@@ -29,49 +29,59 @@
 LIBRARY ieee;                                               
 USE ieee.std_logic_1164.all;                                
 
-ENTITY gateNOr2_vhd_vec_tst IS
-END gateNOr2_vhd_vec_tst;
-ARCHITECTURE gateNOr2_arch OF gateNOr2_vhd_vec_tst IS
+ENTITY encoder_semi_parallel_vhd_vec_tst IS
+END encoder_semi_parallel_vhd_vec_tst;
+ARCHITECTURE encoder_semi_parallel_arch OF encoder_semi_parallel_vhd_vec_tst IS
 -- constants                                                 
 -- signals                                                   
-SIGNAL x1 : STD_LOGIC;
-SIGNAL x2 : STD_LOGIC;
-SIGNAL y : STD_LOGIC;
-COMPONENT gateNOr2
+SIGNAL a : STD_LOGIC;
+SIGNAL clk : STD_LOGIC;
+SIGNAL ended : STD_LOGIC;
+SIGNAL nRst : STD_LOGIC;
+SIGNAL r : STD_LOGIC_VECTOR(7 DOWNTO 0);
+COMPONENT encoder_semi_parallel
 	PORT (
-	x1 : IN STD_LOGIC;
-	x2 : IN STD_LOGIC;
-	y : BUFFER STD_LOGIC
+	a : IN STD_LOGIC;
+	clk : IN STD_LOGIC;
+	ended : OUT STD_LOGIC;
+	nRst : IN STD_LOGIC;
+	r : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
 	);
 END COMPONENT;
 BEGIN
-	i1 : gateNOr2
+	i1 : encoder_semi_parallel
 	PORT MAP (
 -- list connections between master ports and signals
-	x1 => x1,
-	x2 => x2,
-	y => y
+	a => a,
+	clk => clk,
+	ended => ended,
+	nRst => nRst,
+	r => r
 	);
 
--- x1
-t_prcs_x1: PROCESS
+-- a
+t_prcs_a: PROCESS
 BEGIN
-	x1 <= '0';
-	WAIT FOR 140000 ps;
-	x1 <= '1';
-	WAIT FOR 140000 ps;
-	x1 <= '0';
+	a <= '1';
 WAIT;
-END PROCESS t_prcs_x1;
+END PROCESS t_prcs_a;
 
--- x2
-t_prcs_x2: PROCESS
+-- clk
+t_prcs_clk: PROCESS
 BEGIN
-	x2 <= '0';
-	WAIT FOR 220000 ps;
-	x2 <= '1';
-	WAIT FOR 220000 ps;
-	x2 <= '0';
+LOOP
+	clk <= '0';
+	WAIT FOR 20000 ps;
+	clk <= '1';
+	WAIT FOR 20000 ps;
+	IF (NOW >= 1000000 ps) THEN WAIT; END IF;
+END LOOP;
+END PROCESS t_prcs_clk;
+
+-- nRst
+t_prcs_nRst: PROCESS
+BEGIN
+	nRst <= '1';
 WAIT;
-END PROCESS t_prcs_x2;
-END gateNOr2_arch;
+END PROCESS t_prcs_nRst;
+END encoder_semi_parallel_arch;

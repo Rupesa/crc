@@ -19,7 +19,7 @@
 -- the top level entity of the current Quartus project .The user can use this   
 -- testbench to simulate his design using a third-party simulation tool .       
 -- *****************************************************************************
--- Generated on "12/09/2020 01:57:30"
+-- Generated on "12/09/2020 15:15:28"
                                                              
 -- Vhdl Test Bench(with test vectors) for design  :          reverse_counter_15_0
 -- 
@@ -40,7 +40,7 @@ SIGNAL nRst : STD_LOGIC;
 COMPONENT reverse_counter_15_0
 	PORT (
 	clk : IN STD_LOGIC;
-	count : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
+	count : BUFFER STD_LOGIC_VECTOR(3 DOWNTO 0);
 	nRst : IN STD_LOGIC
 	);
 END COMPONENT;
@@ -58,9 +58,9 @@ t_prcs_clk: PROCESS
 BEGIN
 LOOP
 	clk <= '0';
-	WAIT FOR 25000 ps;
+	WAIT FOR 20000 ps;
 	clk <= '1';
-	WAIT FOR 25000 ps;
+	WAIT FOR 20000 ps;
 	IF (NOW >= 1000000 ps) THEN WAIT; END IF;
 END LOOP;
 END PROCESS t_prcs_clk;

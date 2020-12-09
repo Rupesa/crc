@@ -1,36 +1,703 @@
-|flipflopT
-clk => gateAnd3:andd.x0
-clk => gateAnd3:andd1.x0
-T => gateAnd3:andd.x1
-T => gateAnd3:andd1.x1
-nRst => ~NO_FANOUT~
-Q <= gateNOr2:norr.y
-nQ <= gateNOr2:norr1.y
+|encoder_serial
+clk => encoder_semi_parallel:semi_parallel.clk
+clk => rserializer:serializer.clk
+nGRst => encoder_semi_parallel:semi_parallel.nRst
+ain => encoder_semi_parallel:semi_parallel.a
+ain => mux2to1:final.a
+ar << mux2to1:final.o
+ended << encoder_semi_parallel:semi_parallel.ended
 
 
-|flipflopT|gateAnd3:andd
-x0 => y.IN0
-x1 => y.IN1
-x2 => y.IN1
-y <= y.DB_MAX_OUTPUT_PORT_TYPE
+|encoder_serial|encoder_semi_parallel:semi_parallel
+nRst => reverse_counter_15_0:counter.nrst
+nRst => ai_divider:ai_div.nrst
+nRst => xfo:xors.nrst
+nRst => flipFlopD:final2.nRst
+nRst => non_delayer:nd.nRst
+clk => reverse_counter_15_0:counter.clk
+clk => xfo:xors.clk
+clk => flipFlopD:final2.clk
+clk => non_delayer:nd.clk
+a => s_a.IN1
+r[0] <= xfo:xors.r[0]
+r[1] <= xfo:xors.r[1]
+r[2] <= xfo:xors.r[2]
+r[3] <= xfo:xors.r[3]
+r[4] <= xfo:xors.r[4]
+r[5] <= xfo:xors.r[5]
+r[6] <= xfo:xors.r[6]
+r[7] <= xfo:xors.r[7]
+ended <= non_delayer:nd.s
 
 
-|flipflopT|gateAnd3:andd1
-x0 => y.IN0
-x1 => y.IN1
-x2 => y.IN1
-y <= y.DB_MAX_OUTPUT_PORT_TYPE
+|encoder_serial|encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter
+clk => flipflopT:ff0.clk
+clk => flipflopT:ff1.clk
+clk => flipflopT:ff2.clk
+clk => flipflopT:ff3.clk
+nRst => flipflopT:ff0.nRst
+nRst => flipflopT:ff1.nRst
+nRst => flipflopT:ff2.nRst
+nRst => flipflopT:ff3.nRst
+enable_end <= enable_end.DB_MAX_OUTPUT_PORT_TYPE
+count[0] <= flipflopT:ff0.Q
+count[1] <= flipflopT:ff1.Q
+count[2] <= flipflopT:ff2.Q
+count[3] <= flipflopT:ff3.Q
 
 
-|flipflopT|gateNOr2:norr
+|encoder_serial|encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter|flipFlopT:ff0
+clk => flipflopD:andd1.clk
+T => gateXOR2:xorr.x2
+nRst => flipflopD:andd1.nRst
+Q <= flipflopD:andd1.Q
+nQ <= flipflopD:andd1.Q
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter|flipFlopT:ff0|gateXOR2:xorr
 x1 => y.IN0
 x2 => y.IN1
 y <= y.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|flipflopT|gateNOr2:norr1
+|encoder_serial|encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter|flipFlopT:ff0|flipFlopD:andd1
+clk => Q~reg0.CLK
+D => Q~reg0.DATAIN
+nRst => Q~reg0.ACLR
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter|flipFlopT:ff1
+clk => flipflopD:andd1.clk
+T => gateXOR2:xorr.x2
+nRst => flipflopD:andd1.nRst
+Q <= flipflopD:andd1.Q
+nQ <= flipflopD:andd1.Q
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter|flipFlopT:ff1|gateXOR2:xorr
 x1 => y.IN0
 x2 => y.IN1
 y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter|flipFlopT:ff1|flipFlopD:andd1
+clk => Q~reg0.CLK
+D => Q~reg0.DATAIN
+nRst => Q~reg0.ACLR
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter|gateAnd2:andd
+x1 => y.IN0
+x2 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter|flipFlopT:ff2
+clk => flipflopD:andd1.clk
+T => gateXOR2:xorr.x2
+nRst => flipflopD:andd1.nRst
+Q <= flipflopD:andd1.Q
+nQ <= flipflopD:andd1.Q
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter|flipFlopT:ff2|gateXOR2:xorr
+x1 => y.IN0
+x2 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter|flipFlopT:ff2|flipFlopD:andd1
+clk => Q~reg0.CLK
+D => Q~reg0.DATAIN
+nRst => Q~reg0.ACLR
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter|gateAnd2:andd2
+x1 => y.IN0
+x2 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter|flipFlopT:ff3
+clk => flipflopD:andd1.clk
+T => gateXOR2:xorr.x2
+nRst => flipflopD:andd1.nRst
+Q <= flipflopD:andd1.Q
+nQ <= flipflopD:andd1.Q
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter|flipFlopT:ff3|gateXOR2:xorr
+x1 => y.IN0
+x2 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter|flipFlopT:ff3|flipFlopD:andd1
+clk => Q~reg0.CLK
+D => Q~reg0.DATAIN
+nRst => Q~reg0.ACLR
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|ai_divider:ai_div
+nRst => gateAnd2:nr.x2
+index[0] => selector2:sel.count[0]
+index[1] => selector2:sel.count[1]
+index[2] => selector2:sel.count[2]
+index[3] => selector2:sel.count[3]
+ai => gateAnd2:nr.x1
+a_relevance[0] <= gateAnd2:r0.y
+a_relevance[1] <= gateAnd2:r1.y
+a_relevance[2] <= gateAnd2:r2.y
+a_relevance[3] <= gateAnd2:r3.y
+a_relevance[4] <= gateAnd2:r4.y
+a_relevance[5] <= gateAnd2:r5.y
+a_relevance[6] <= gateAnd2:r6.y
+a_relevance[7] <= gateAnd2:r7.y
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|ai_divider:ai_div|selector2:sel
+count[0] => Mux0.IN19
+count[0] => Mux1.IN19
+count[0] => Mux2.IN19
+count[0] => Mux3.IN19
+count[0] => Mux4.IN19
+count[0] => Mux5.IN19
+count[0] => Mux6.IN19
+count[0] => Mux7.IN19
+count[1] => Mux0.IN18
+count[1] => Mux1.IN18
+count[1] => Mux2.IN18
+count[1] => Mux3.IN18
+count[1] => Mux4.IN18
+count[1] => Mux5.IN18
+count[1] => Mux6.IN18
+count[1] => Mux7.IN18
+count[2] => Mux0.IN17
+count[2] => Mux1.IN17
+count[2] => Mux2.IN17
+count[2] => Mux3.IN17
+count[2] => Mux4.IN17
+count[2] => Mux5.IN17
+count[2] => Mux6.IN17
+count[2] => Mux7.IN17
+count[3] => Mux0.IN16
+count[3] => Mux1.IN16
+count[3] => Mux2.IN16
+count[3] => Mux3.IN16
+count[3] => Mux4.IN16
+count[3] => Mux5.IN16
+count[3] => Mux6.IN16
+count[3] => Mux7.IN16
+a_enabler[0] <= Mux7.DB_MAX_OUTPUT_PORT_TYPE
+a_enabler[1] <= Mux6.DB_MAX_OUTPUT_PORT_TYPE
+a_enabler[2] <= Mux5.DB_MAX_OUTPUT_PORT_TYPE
+a_enabler[3] <= Mux4.DB_MAX_OUTPUT_PORT_TYPE
+a_enabler[4] <= Mux3.DB_MAX_OUTPUT_PORT_TYPE
+a_enabler[5] <= Mux2.DB_MAX_OUTPUT_PORT_TYPE
+a_enabler[6] <= Mux1.DB_MAX_OUTPUT_PORT_TYPE
+a_enabler[7] <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|ai_divider:ai_div|gateAnd2:nr
+x1 => y.IN0
+x2 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|ai_divider:ai_div|gateAnd2:r7
+x1 => y.IN0
+x2 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|ai_divider:ai_div|gateAnd2:r6
+x1 => y.IN0
+x2 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|ai_divider:ai_div|gateAnd2:r5
+x1 => y.IN0
+x2 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|ai_divider:ai_div|gateAnd2:r4
+x1 => y.IN0
+x2 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|ai_divider:ai_div|gateAnd2:r3
+x1 => y.IN0
+x2 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|ai_divider:ai_div|gateAnd2:r2
+x1 => y.IN0
+x2 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|ai_divider:ai_div|gateAnd2:r1
+x1 => y.IN0
+x2 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|ai_divider:ai_div|gateAnd2:r0
+x1 => y.IN0
+x2 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|xfo:xors
+nRst => flipflopT:fft1.nrst
+nRst => flipflopT:fft2.nrst
+nRst => flipflopT:fft3.nrst
+nRst => flipflopT:fft4.nrst
+nRst => flipflopT:fft5.nrst
+nRst => flipflopT:fft6.nrst
+nRst => flipflopT:fft7.nrst
+nRst => flipflopT:fft8.nrst
+clk => flipflopT:fft1.clk
+clk => flipflopT:fft2.clk
+clk => flipflopT:fft3.clk
+clk => flipflopT:fft4.clk
+clk => flipflopT:fft5.clk
+clk => flipflopT:fft6.clk
+clk => flipflopT:fft7.clk
+clk => flipflopT:fft8.clk
+a[0] => flipflopT:fft8.T
+a[1] => flipflopT:fft7.T
+a[2] => flipflopT:fft6.T
+a[3] => flipflopT:fft5.T
+a[4] => flipflopT:fft4.T
+a[5] => flipflopT:fft3.T
+a[6] => flipflopT:fft2.T
+a[7] => flipflopT:fft1.T
+r[0] <= flipflopT:fft8.Q
+r[1] <= flipflopT:fft7.Q
+r[2] <= flipflopT:fft6.Q
+r[3] <= flipflopT:fft5.Q
+r[4] <= flipflopT:fft4.Q
+r[5] <= flipflopT:fft3.Q
+r[6] <= flipflopT:fft2.Q
+r[7] <= flipflopT:fft1.Q
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft1
+clk => flipflopD:andd1.clk
+T => gateXOR2:xorr.x2
+nRst => flipflopD:andd1.nRst
+Q <= flipflopD:andd1.Q
+nQ <= flipflopD:andd1.Q
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft1|gateXOR2:xorr
+x1 => y.IN0
+x2 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft1|flipFlopD:andd1
+clk => Q~reg0.CLK
+D => Q~reg0.DATAIN
+nRst => Q~reg0.ACLR
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft2
+clk => flipflopD:andd1.clk
+T => gateXOR2:xorr.x2
+nRst => flipflopD:andd1.nRst
+Q <= flipflopD:andd1.Q
+nQ <= flipflopD:andd1.Q
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft2|gateXOR2:xorr
+x1 => y.IN0
+x2 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft2|flipFlopD:andd1
+clk => Q~reg0.CLK
+D => Q~reg0.DATAIN
+nRst => Q~reg0.ACLR
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft3
+clk => flipflopD:andd1.clk
+T => gateXOR2:xorr.x2
+nRst => flipflopD:andd1.nRst
+Q <= flipflopD:andd1.Q
+nQ <= flipflopD:andd1.Q
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft3|gateXOR2:xorr
+x1 => y.IN0
+x2 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft3|flipFlopD:andd1
+clk => Q~reg0.CLK
+D => Q~reg0.DATAIN
+nRst => Q~reg0.ACLR
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft4
+clk => flipflopD:andd1.clk
+T => gateXOR2:xorr.x2
+nRst => flipflopD:andd1.nRst
+Q <= flipflopD:andd1.Q
+nQ <= flipflopD:andd1.Q
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft4|gateXOR2:xorr
+x1 => y.IN0
+x2 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft4|flipFlopD:andd1
+clk => Q~reg0.CLK
+D => Q~reg0.DATAIN
+nRst => Q~reg0.ACLR
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft5
+clk => flipflopD:andd1.clk
+T => gateXOR2:xorr.x2
+nRst => flipflopD:andd1.nRst
+Q <= flipflopD:andd1.Q
+nQ <= flipflopD:andd1.Q
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft5|gateXOR2:xorr
+x1 => y.IN0
+x2 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft5|flipFlopD:andd1
+clk => Q~reg0.CLK
+D => Q~reg0.DATAIN
+nRst => Q~reg0.ACLR
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft6
+clk => flipflopD:andd1.clk
+T => gateXOR2:xorr.x2
+nRst => flipflopD:andd1.nRst
+Q <= flipflopD:andd1.Q
+nQ <= flipflopD:andd1.Q
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft6|gateXOR2:xorr
+x1 => y.IN0
+x2 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft6|flipFlopD:andd1
+clk => Q~reg0.CLK
+D => Q~reg0.DATAIN
+nRst => Q~reg0.ACLR
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft7
+clk => flipflopD:andd1.clk
+T => gateXOR2:xorr.x2
+nRst => flipflopD:andd1.nRst
+Q <= flipflopD:andd1.Q
+nQ <= flipflopD:andd1.Q
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft7|gateXOR2:xorr
+x1 => y.IN0
+x2 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft7|flipFlopD:andd1
+clk => Q~reg0.CLK
+D => Q~reg0.DATAIN
+nRst => Q~reg0.ACLR
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft8
+clk => flipflopD:andd1.clk
+T => gateXOR2:xorr.x2
+nRst => flipflopD:andd1.nRst
+Q <= flipflopD:andd1.Q
+nQ <= flipflopD:andd1.Q
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft8|gateXOR2:xorr
+x1 => y.IN0
+x2 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|xfo:xors|flipFlopT:fft8|flipFlopD:andd1
+clk => Q~reg0.CLK
+D => Q~reg0.DATAIN
+nRst => Q~reg0.ACLR
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|gateNOr4:final1
+x1 => y.IN0
+x2 => y.IN1
+x3 => y.IN1
+x4 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|flipFlopD:final2
+clk => Q~reg0.CLK
+D => Q~reg0.DATAIN
+nRst => Q~reg0.ACLR
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|non_delayer:nd
+nRst => flipflopT:ff0.nRst
+T => s.IN1
+T => flipflopT:ff0.T
+clk => flipflopT:ff0.clk
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|non_delayer:nd|flipFlopT:ff0
+clk => flipflopD:andd1.clk
+T => gateXOR2:xorr.x2
+nRst => flipflopD:andd1.nRst
+Q <= flipflopD:andd1.Q
+nQ <= flipflopD:andd1.Q
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|non_delayer:nd|flipFlopT:ff0|gateXOR2:xorr
+x1 => y.IN0
+x2 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|encoder_semi_parallel:semi_parallel|non_delayer:nd|flipFlopT:ff0|flipFlopD:andd1
+clk => Q~reg0.CLK
+D => Q~reg0.DATAIN
+nRst => Q~reg0.ACLR
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|rserializer:serializer
+nRst => reverse_counter_7_0:counter.nRst
+clk => reverse_counter_7_0:counter.clk
+rpar[0] => mux8to1:mux.i8[0]
+rpar[1] => mux8to1:mux.i8[1]
+rpar[2] => mux8to1:mux.i8[2]
+rpar[3] => mux8to1:mux.i8[3]
+rpar[4] => mux8to1:mux.i8[4]
+rpar[5] => mux8to1:mux.i8[5]
+rpar[6] => mux8to1:mux.i8[6]
+rpar[7] => mux8to1:mux.i8[7]
+rser <= mux8to1:mux.f8
+
+
+|encoder_serial|rserializer:serializer|reverse_counter_7_0:counter
+clk => flipflopT:ff0.clk
+clk => flipflopT:ff1.clk
+clk => flipflopT:ff2.clk
+nRst => flipflopT:ff0.nRst
+nRst => flipflopT:ff1.nRst
+nRst => flipflopT:ff2.nRst
+count[0] <= flipflopT:ff0.Q
+count[1] <= flipflopT:ff1.Q
+count[2] <= flipflopT:ff2.Q
+
+
+|encoder_serial|rserializer:serializer|reverse_counter_7_0:counter|flipFlopT:ff0
+clk => flipflopD:andd1.clk
+T => gateXOR2:xorr.x2
+nRst => flipflopD:andd1.nRst
+Q <= flipflopD:andd1.Q
+nQ <= flipflopD:andd1.Q
+
+
+|encoder_serial|rserializer:serializer|reverse_counter_7_0:counter|flipFlopT:ff0|gateXOR2:xorr
+x1 => y.IN0
+x2 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|rserializer:serializer|reverse_counter_7_0:counter|flipFlopT:ff0|flipFlopD:andd1
+clk => Q~reg0.CLK
+D => Q~reg0.DATAIN
+nRst => Q~reg0.ACLR
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|rserializer:serializer|reverse_counter_7_0:counter|flipFlopT:ff1
+clk => flipflopD:andd1.clk
+T => gateXOR2:xorr.x2
+nRst => flipflopD:andd1.nRst
+Q <= flipflopD:andd1.Q
+nQ <= flipflopD:andd1.Q
+
+
+|encoder_serial|rserializer:serializer|reverse_counter_7_0:counter|flipFlopT:ff1|gateXOR2:xorr
+x1 => y.IN0
+x2 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|rserializer:serializer|reverse_counter_7_0:counter|flipFlopT:ff1|flipFlopD:andd1
+clk => Q~reg0.CLK
+D => Q~reg0.DATAIN
+nRst => Q~reg0.ACLR
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|rserializer:serializer|reverse_counter_7_0:counter|gateAnd2:andd
+x1 => y.IN0
+x2 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|rserializer:serializer|reverse_counter_7_0:counter|flipFlopT:ff2
+clk => flipflopD:andd1.clk
+T => gateXOR2:xorr.x2
+nRst => flipflopD:andd1.nRst
+Q <= flipflopD:andd1.Q
+nQ <= flipflopD:andd1.Q
+
+
+|encoder_serial|rserializer:serializer|reverse_counter_7_0:counter|flipFlopT:ff2|gateXOR2:xorr
+x1 => y.IN0
+x2 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|rserializer:serializer|reverse_counter_7_0:counter|flipFlopT:ff2|flipFlopD:andd1
+clk => Q~reg0.CLK
+D => Q~reg0.DATAIN
+nRst => Q~reg0.ACLR
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|rserializer:serializer|mux8to1:mux
+i8[0] => mux4to1:res1.i[0]
+i8[1] => mux4to1:res1.i[1]
+i8[2] => mux4to1:res1.i[2]
+i8[3] => mux4to1:res1.i[3]
+i8[4] => mux4to1:res2.i[0]
+i8[5] => mux4to1:res2.i[1]
+i8[6] => mux4to1:res2.i[2]
+i8[7] => mux4to1:res2.i[3]
+sel8[0] => mux4to1:res1.sel[0]
+sel8[0] => mux4to1:res2.sel[0]
+sel8[1] => mux4to1:res1.sel[1]
+sel8[1] => mux4to1:res2.sel[1]
+sel8[2] => mux2to1:final.s
+f8 <= mux2to1:final.o
+
+
+|encoder_serial|rserializer:serializer|mux8to1:mux|mux4to1:res1
+i[0] => mux2to1:res1.a
+i[1] => mux2to1:res1.b
+i[2] => mux2to1:res2.a
+i[3] => mux2to1:res2.b
+sel[0] => mux2to1:res1.s
+sel[0] => mux2to1:res2.s
+sel[1] => mux2to1:final.s
+f <= mux2to1:final.o
+
+
+|encoder_serial|rserializer:serializer|mux8to1:mux|mux4to1:res1|mux2to1:res1
+s => and2.IN0
+s => and1.IN0
+a => and1.IN1
+b => and2.IN1
+o <= o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|rserializer:serializer|mux8to1:mux|mux4to1:res1|mux2to1:res2
+s => and2.IN0
+s => and1.IN0
+a => and1.IN1
+b => and2.IN1
+o <= o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|rserializer:serializer|mux8to1:mux|mux4to1:res1|mux2to1:final
+s => and2.IN0
+s => and1.IN0
+a => and1.IN1
+b => and2.IN1
+o <= o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|rserializer:serializer|mux8to1:mux|mux4to1:res2
+i[0] => mux2to1:res1.a
+i[1] => mux2to1:res1.b
+i[2] => mux2to1:res2.a
+i[3] => mux2to1:res2.b
+sel[0] => mux2to1:res1.s
+sel[0] => mux2to1:res2.s
+sel[1] => mux2to1:final.s
+f <= mux2to1:final.o
+
+
+|encoder_serial|rserializer:serializer|mux8to1:mux|mux4to1:res2|mux2to1:res1
+s => and2.IN0
+s => and1.IN0
+a => and1.IN1
+b => and2.IN1
+o <= o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|rserializer:serializer|mux8to1:mux|mux4to1:res2|mux2to1:res2
+s => and2.IN0
+s => and1.IN0
+a => and1.IN1
+b => and2.IN1
+o <= o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|rserializer:serializer|mux8to1:mux|mux4to1:res2|mux2to1:final
+s => and2.IN0
+s => and1.IN0
+a => and1.IN1
+b => and2.IN1
+o <= o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|rserializer:serializer|mux8to1:mux|mux2to1:final
+s => and2.IN0
+s => and1.IN0
+a => and1.IN1
+b => and2.IN1
+o <= o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|encoder_serial|mux2to1:final
+s => and2.IN0
+s => and1.IN0
+a => and1.IN1
+b => and2.IN1
+o <= o.DB_MAX_OUTPUT_PORT_TYPE
 
 

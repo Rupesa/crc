@@ -30,11 +30,11 @@ architecture structural of reverse_counter_7_0 is
 
 begin
     ff0  : flipflopT PORT MAP(clk=>clk, T=>'1', nRst=>nRst, Q=>Q0, nQ=>nQ0);
-	 ff1  : flipflopT PORT MAP(clk=>clk, T=>nQ0, nRst=>nRst, Q=>Q1, nQ=>nQ1);
-	 andd : gateAnd2 PORT MAP(x1=>nQ0, x2=>nQ1, y=>and0);
+	 ff1  : flipflopT PORT MAP(clk=>clk, T=>Q0, nRst=>nRst, Q=>Q1, nQ=>nQ1);
+	 andd : gateAnd2 PORT MAP(x1=>Q0, x2=>Q1, y=>and0);
 	 ff2  : flipflopT PORT MAP(clk=>clk, T=>and0, nRst=>nRst, Q=>Q2);
-	 count(2)<=Q2;
-	 count(1)<=Q1;
-	 count(0)<=Q0;
+	 count(2)<= not Q2;
+	 count(1)<=not Q1;
+	 count(0)<=not Q0;
 	 
 end structural;

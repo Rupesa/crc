@@ -19,9 +19,9 @@
 -- the top level entity of the current Quartus project .The user can use this   
 -- testbench to simulate his design using a third-party simulation tool .       
 -- *****************************************************************************
--- Generated on "12/09/2020 01:42:39"
+-- Generated on "12/09/2020 13:51:13"
                                                              
--- Vhdl Test Bench(with test vectors) for design  :          reverse_counter_7_0
+-- Vhdl Test Bench(with test vectors) for design  :          encoder_serial
 -- 
 -- Simulation tool : 3rd Party
 -- 
@@ -29,28 +29,34 @@
 LIBRARY ieee;                                               
 USE ieee.std_logic_1164.all;                                
 
-ENTITY reverse_counter_7_0_vhd_vec_tst IS
-END reverse_counter_7_0_vhd_vec_tst;
-ARCHITECTURE reverse_counter_7_0_arch OF reverse_counter_7_0_vhd_vec_tst IS
+ENTITY encoder_serial_vhd_vec_tst IS
+END encoder_serial_vhd_vec_tst;
+ARCHITECTURE encoder_serial_arch OF encoder_serial_vhd_vec_tst IS
 -- constants                                                 
 -- signals                                                   
+SIGNAL ain : STD_LOGIC;
+SIGNAL ar : STD_LOGIC;
 SIGNAL clk : STD_LOGIC;
-SIGNAL count : STD_LOGIC_VECTOR(2 DOWNTO 0);
-SIGNAL nRst : STD_LOGIC;
-COMPONENT reverse_counter_7_0
+SIGNAL ended : STD_LOGIC;
+SIGNAL nGRst : STD_LOGIC;
+COMPONENT encoder_serial
 	PORT (
+	ain : IN STD_LOGIC;
+	ar : BUFFER STD_LOGIC;
 	clk : IN STD_LOGIC;
-	count : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
-	nRst : IN STD_LOGIC
+	ended : BUFFER STD_LOGIC;
+	nGRst : IN STD_LOGIC
 	);
 END COMPONENT;
 BEGIN
-	i1 : reverse_counter_7_0
+	i1 : encoder_serial
 	PORT MAP (
 -- list connections between master ports and signals
+	ain => ain,
+	ar => ar,
 	clk => clk,
-	count => count,
-	nRst => nRst
+	ended => ended,
+	nGRst => nGRst
 	);
 
 -- clk
@@ -58,17 +64,24 @@ t_prcs_clk: PROCESS
 BEGIN
 LOOP
 	clk <= '0';
-	WAIT FOR 50000 ps;
+	WAIT FOR 10000 ps;
 	clk <= '1';
-	WAIT FOR 50000 ps;
+	WAIT FOR 10000 ps;
 	IF (NOW >= 1000000 ps) THEN WAIT; END IF;
 END LOOP;
 END PROCESS t_prcs_clk;
 
--- nRst
-t_prcs_nRst: PROCESS
+-- ain
+t_prcs_ain: PROCESS
 BEGIN
-	nRst <= '1';
+	ain <= '1';
 WAIT;
-END PROCESS t_prcs_nRst;
-END reverse_counter_7_0_arch;
+END PROCESS t_prcs_ain;
+
+-- nGRst
+t_prcs_nGRst: PROCESS
+BEGIN
+	nGRst <= '0';
+WAIT;
+END PROCESS t_prcs_nGRst;
+END encoder_serial_arch;

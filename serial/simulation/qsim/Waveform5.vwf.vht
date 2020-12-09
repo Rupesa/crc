@@ -19,9 +19,9 @@
 -- the top level entity of the current Quartus project .The user can use this   
 -- testbench to simulate his design using a third-party simulation tool .       
 -- *****************************************************************************
--- Generated on "12/09/2020 01:53:01"
+-- Generated on "12/09/2020 15:08:42"
                                                              
--- Vhdl Test Bench(with test vectors) for design  :          reverse_counter_15_0
+-- Vhdl Test Bench(with test vectors) for design  :          encoder_semi_parallel
 -- 
 -- Simulation tool : 3rd Party
 -- 
@@ -29,29 +29,42 @@
 LIBRARY ieee;                                               
 USE ieee.std_logic_1164.all;                                
 
-ENTITY reverse_counter_15_0_vhd_vec_tst IS
-END reverse_counter_15_0_vhd_vec_tst;
-ARCHITECTURE reverse_counter_15_0_arch OF reverse_counter_15_0_vhd_vec_tst IS
+ENTITY encoder_semi_parallel_vhd_vec_tst IS
+END encoder_semi_parallel_vhd_vec_tst;
+ARCHITECTURE encoder_semi_parallel_arch OF encoder_semi_parallel_vhd_vec_tst IS
 -- constants                                                 
 -- signals                                                   
+SIGNAL a : STD_LOGIC;
 SIGNAL clk : STD_LOGIC;
-SIGNAL count : STD_LOGIC_VECTOR(3 DOWNTO 0);
+SIGNAL ended : STD_LOGIC;
 SIGNAL nRst : STD_LOGIC;
-COMPONENT reverse_counter_15_0
+SIGNAL r : STD_LOGIC_VECTOR(7 DOWNTO 0);
+COMPONENT encoder_semi_parallel
 	PORT (
+	a : IN STD_LOGIC;
 	clk : IN STD_LOGIC;
-	count : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
-	nRst : IN STD_LOGIC
+	ended : BUFFER STD_LOGIC;
+	nRst : IN STD_LOGIC;
+	r : BUFFER STD_LOGIC_VECTOR(7 DOWNTO 0)
 	);
 END COMPONENT;
 BEGIN
-	i1 : reverse_counter_15_0
+	i1 : encoder_semi_parallel
 	PORT MAP (
 -- list connections between master ports and signals
+	a => a,
 	clk => clk,
-	count => count,
-	nRst => nRst
+	ended => ended,
+	nRst => nRst,
+	r => r
 	);
+
+-- a
+t_prcs_a: PROCESS
+BEGIN
+	a <= '1';
+WAIT;
+END PROCESS t_prcs_a;
 
 -- clk
 t_prcs_clk: PROCESS
@@ -71,4 +84,4 @@ BEGIN
 	nRst <= '1';
 WAIT;
 END PROCESS t_prcs_nRst;
-END reverse_counter_15_0_arch;
+END encoder_semi_parallel_arch;

@@ -20,9 +20,9 @@ ARCHITECTURE structure OF rserializer IS
   END COMPONENT;
 
   COMPONENT mux8to1
-    PORT (s:  IN STD_LOGIC_VECTOR(2 downto 0);
-          i:  IN STD_LOGIC_VECTOR(7 downto 0);
-          o: OUT STD_LOGIC);
+    PORT (i8:     IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+        sel8:  	IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+        f8:    	OUT STD_LOGIC);
   END COMPONENT;
 
   COMPONENT reverse_counter_7_0
@@ -33,7 +33,7 @@ ARCHITECTURE structure OF rserializer IS
 BEGIN
 
   counter: reverse_counter_7_0 PORT MAP (clk=>clk, nRst=>nRst, count=>s_count);
-  mux: mux8to1 PORT MAP (s=>s_count, i=>rpar, o=>rser);
+  mux: mux8to1 PORT MAP (i8=>rpar, sel8=>s_count, f8=>rser);
   --ffd: flipflopD PORT MAP(clk=>clk, nRst=>nRst, D=>s_r, Q=>rser);
   
 END structure;
