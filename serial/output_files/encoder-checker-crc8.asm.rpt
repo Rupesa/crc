@@ -1,5 +1,5 @@
 Assembler report for encoder-checker-crc8
-Wed Dec 09 19:24:20 2020
+Wed Dec 09 20:30:03 2020
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
@@ -10,7 +10,7 @@ Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
   2. Assembler Summary
   3. Assembler Settings
   4. Assembler Generated Files
-  5. Assembler Device Options: C:/Users/ruisantos/Desktop/serial/output_files/encoder-checker-crc8.sof
+  5. Assembler Device Options: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/output_files/encoder-checker-crc8.sof
   6. Assembler Messages
 
 
@@ -38,7 +38,7 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Wed Dec 09 19:24:20 2020 ;
+; Assembler Status      ; Successful - Wed Dec 09 20:30:03 2020 ;
 ; Revision Name         ; encoder-checker-crc8                  ;
 ; Top-level Entity Name ; encoder_serial                        ;
 ; Family                ; Cyclone IV GX                         ;
@@ -53,23 +53,23 @@ https://fpgasoftware.intel.com/eula.
 +--------+---------+---------------+
 
 
-+-------------------------------------------------------------------------+
-; Assembler Generated Files                                               ;
-+-------------------------------------------------------------------------+
-; File Name                                                               ;
-+-------------------------------------------------------------------------+
-; C:/Users/ruisantos/Desktop/serial/output_files/encoder-checker-crc8.sof ;
-+-------------------------------------------------------------------------+
++--------------------------------------------------------------------------------------------------------+
+; Assembler Generated Files                                                                              ;
++--------------------------------------------------------------------------------------------------------+
+; File Name                                                                                              ;
++--------------------------------------------------------------------------------------------------------+
+; C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/output_files/encoder-checker-crc8.sof ;
++--------------------------------------------------------------------------------------------------------+
 
 
-+---------------------------------------------------------------------------------------------------+
-; Assembler Device Options: C:/Users/ruisantos/Desktop/serial/output_files/encoder-checker-crc8.sof ;
-+----------------+----------------------------------------------------------------------------------+
-; Option         ; Setting                                                                          ;
-+----------------+----------------------------------------------------------------------------------+
-; JTAG usercode  ; 0x000BFE78                                                                       ;
-; Checksum       ; 0x000BFE78                                                                       ;
-+----------------+----------------------------------------------------------------------------------+
++----------------------------------------------------------------------------------------------------------------------------------+
+; Assembler Device Options: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/output_files/encoder-checker-crc8.sof ;
++----------------+-----------------------------------------------------------------------------------------------------------------+
+; Option         ; Setting                                                                                                         ;
++----------------+-----------------------------------------------------------------------------------------------------------------+
+; JTAG usercode  ; 0x000BFE78                                                                                                      ;
+; Checksum       ; 0x000BFE78                                                                                                      ;
++----------------+-----------------------------------------------------------------------------------------------------------------+
 
 
 +--------------------+
@@ -78,15 +78,15 @@ https://fpgasoftware.intel.com/eula.
 Info: *******************************************************************
 Info: Running Quartus Prime Assembler
     Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
-    Info: Processing started: Wed Dec 09 19:24:18 2020
+    Info: Processing started: Wed Dec 09 20:30:02 2020
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off encoder-checker-crc8 -c encoder-checker-crc8
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (115031): Writing out detailed assembly data for power analysis
 Info (115030): Assembler is generating device programming files
 Info: Quartus Prime Assembler was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 4755 megabytes
-    Info: Processing ended: Wed Dec 09 19:24:20 2020
-    Info: Elapsed time: 00:00:02
-    Info: Total CPU time (on all processors): 00:00:02
+    Info: Peak virtual memory: 4752 megabytes
+    Info: Processing ended: Wed Dec 09 20:30:03 2020
+    Info: Elapsed time: 00:00:01
+    Info: Total CPU time (on all processors): 00:00:01
 
 

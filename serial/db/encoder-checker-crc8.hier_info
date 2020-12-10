@@ -39,7 +39,6 @@ nRst => flipflopT:ff0.nRst
 nRst => flipflopT:ff1.nRst
 nRst => flipflopT:ff2.nRst
 nRst => flipflopT:ff3.nRst
-enable_end <= enable_end.DB_MAX_OUTPUT_PORT_TYPE
 count[0] <= flipflopT:ff0.Q
 count[1] <= flipflopT:ff1.Q
 count[2] <= flipflopT:ff2.Q

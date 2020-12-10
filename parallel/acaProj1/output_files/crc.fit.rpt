@@ -1,5 +1,5 @@
 Fitter report for crc
-Sat Dec 05 23:20:44 2020
+Wed Dec 09 23:08:31 2020
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
@@ -63,7 +63,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Fitter Summary                                                                   ;
 +------------------------------------+---------------------------------------------+
-; Fitter Status                      ; Successful - Sat Dec 05 23:20:44 2020       ;
+; Fitter Status                      ; Successful - Wed Dec 09 23:08:31 2020       ;
 ; Quartus Prime Version              ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
 ; Revision Name                      ; crc                                         ;
 ; Top-level Entity Name              ; checker_24_1                                ;
@@ -158,7 +158,7 @@ https://fpgasoftware.intel.com/eula.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.2%      ;
+;     Processor 2            ;   0.1%      ;
 +----------------------------+-------------+
 
 
@@ -200,7 +200,7 @@ https://fpgasoftware.intel.com/eula.
 +--------------+
 ; Pin-Out File ;
 +--------------+
-The pin-out file can be found in C:/Users/ruisantos/Desktop/acaProj1/output_files/crc.pin.
+The pin-out file can be found in C:/Users/ruisantos/Desktop/crc-main/parallel/acaProj1/output_files/crc.pin.
 
 
 +---------------------------------------------------------------------+
@@ -1073,23 +1073,23 @@ Info (170199): The Fitter performed an Auto Fit compilation.  Optimizations were
     Info (170201): Optimizations that may affect the design's routability were skipped
     Info (170200): Optimizations that may affect the design's timing were skipped
 Info (170194): Fitter routing operations ending: elapsed time is 00:00:00
-Info (11888): Total time spent on timing analysis during the Fitter is 0.04 seconds.
+Info (11888): Total time spent on timing analysis during the Fitter is 0.03 seconds.
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Info (11218): Fitter post-fit operations ending: elapsed time is 00:00:01
-Info (144001): Generated suppressed messages file C:/Users/ruisantos/Desktop/acaProj1/output_files/crc.fit.smsg
+Info (144001): Generated suppressed messages file C:/Users/ruisantos/Desktop/crc-main/parallel/acaProj1/output_files/crc.fit.smsg
 Info: Quartus Prime Fitter was successful. 0 errors, 6 warnings
-    Info: Peak virtual memory: 5295 megabytes
-    Info: Processing ended: Sat Dec 05 23:20:45 2020
-    Info: Elapsed time: 00:00:07
+    Info: Peak virtual memory: 5326 megabytes
+    Info: Processing ended: Wed Dec 09 23:08:32 2020
+    Info: Elapsed time: 00:00:08
     Info: Total CPU time (on all processors): 00:00:06
 
 
 +----------------------------+
 ; Fitter Suppressed Messages ;
 +----------------------------+
-The suppressed messages can be found in C:/Users/ruisantos/Desktop/acaProj1/output_files/crc.fit.smsg.
+The suppressed messages can be found in C:/Users/ruisantos/Desktop/crc-main/parallel/acaProj1/output_files/crc.fit.smsg.
 
 

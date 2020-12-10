@@ -5,7 +5,6 @@ USE ieee.numeric_std.all;
 ENTITY reverse_counter_15_0 IS
   PORT (clk: IN STD_LOGIC;
         nRst: IN STD_LOGIC;
-		  enable_end: OUT STD_LOGIC;
         count: OUT STD_LOGIC_VECTOR(3 downto 0) := (others => '1'));
 END reverse_counter_15_0;
 
@@ -20,7 +19,6 @@ architecture structural of reverse_counter_15_0 is
 	signal nQ2 : std_logic;
 	signal and1 : std_logic;
 	signal Q3 : std_logic;
-	signal s_enable_end : std_logic := '0';
 
 	COMPONENT flipflopT
     PORT (clk, T: IN STD_LOGIC;
@@ -45,7 +43,5 @@ begin
 	 count(2)<= not Q2;
 	 count(1)<= not Q1;
 	 count(0)<= not Q0;
-	 s_enable_end<=Q0 OR s_enable_end;
-	 enable_end <= s_enable_end;
 	 
 end structural;

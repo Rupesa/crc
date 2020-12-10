@@ -1,5 +1,5 @@
 Analysis & Synthesis report for encoder-checker-crc8
-Wed Dec 09 19:23:59 2020
+Wed Dec 09 20:29:49 2020
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
@@ -30,10 +30,9 @@ Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
  22. Port Connectivity Checks: "encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter|flipFlopT:ff2"
  23. Port Connectivity Checks: "encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter|flipFlopT:ff1"
  24. Port Connectivity Checks: "encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter|flipFlopT:ff0"
- 25. Port Connectivity Checks: "encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter"
- 26. Post-Synthesis Netlist Statistics for Top Partition
- 27. Elapsed Time Per Partition
- 28. Analysis & Synthesis Messages
+ 25. Post-Synthesis Netlist Statistics for Top Partition
+ 26. Elapsed Time Per Partition
+ 27. Analysis & Synthesis Messages
 
 
 
@@ -60,7 +59,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Wed Dec 09 19:23:58 2020       ;
+; Analysis & Synthesis Status        ; Successful - Wed Dec 09 20:29:49 2020       ;
 ; Quartus Prime Version              ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
 ; Revision Name                      ; encoder-checker-crc8                        ;
 ; Top-level Entity Name              ; encoder_serial                              ;
@@ -171,41 +170,41 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+
 ; Processors                 ; Number      ;
 +----------------------------+-------------+
-; Number detected on machine ; 2           ;
-; Maximum allowed            ; 2           ;
+; Number detected on machine ; 8           ;
+; Maximum allowed            ; 4           ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
-; Maximum used               ; 2           ;
+; Maximum used               ; 4           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.0%      ;
+;     Processors 2-4         ;   0.0%      ;
 +----------------------------+-------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                       ;
-+----------------------------------+-----------------+-----------------+-------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                ; Library ;
-+----------------------------------+-----------------+-----------------+-------------------------------------------------------------+---------+
-; encoder_serial.vhd               ; yes             ; User VHDL File  ; C:/Users/ruisantos/Desktop/serial/encoder_serial.vhd        ;         ;
-; rserializer.vhd                  ; yes             ; User VHDL File  ; C:/Users/ruisantos/Desktop/serial/rserializer.vhd           ;         ;
-; encoder_semi_parallel.vhd        ; yes             ; User VHDL File  ; C:/Users/ruisantos/Desktop/serial/encoder_semi_parallel.vhd ;         ;
-; ai_divider.vhd                   ; yes             ; User VHDL File  ; C:/Users/ruisantos/Desktop/serial/ai_divider.vhd            ;         ;
-; xfo.vhd                          ; yes             ; User VHDL File  ; C:/Users/ruisantos/Desktop/serial/xfo.vhd                   ;         ;
-; reverse_counter_15_0.vhd         ; yes             ; User VHDL File  ; C:/Users/ruisantos/Desktop/serial/reverse_counter_15_0.vhd  ;         ;
-; reverse_counter_7_0.vhd          ; yes             ; User VHDL File  ; C:/Users/ruisantos/Desktop/serial/reverse_counter_7_0.vhd   ;         ;
-; flipflopT.vhd                    ; yes             ; User VHDL File  ; C:/Users/ruisantos/Desktop/serial/flipflopT.vhd             ;         ;
-; mux2to1.vhd                      ; yes             ; User VHDL File  ; C:/Users/ruisantos/Desktop/serial/mux2to1.vhd               ;         ;
-; gateNOr4.vhd                     ; yes             ; User VHDL File  ; C:/Users/ruisantos/Desktop/serial/gateNOr4.vhd              ;         ;
-; gateAnd2.vhd                     ; yes             ; User VHDL File  ; C:/Users/ruisantos/Desktop/serial/gateAnd2.vhd              ;         ;
-; flipflopD.vhd                    ; yes             ; User VHDL File  ; C:/Users/ruisantos/Desktop/serial/flipflopD.vhd             ;         ;
-; mux8to1.vhd                      ; yes             ; User VHDL File  ; C:/Users/ruisantos/Desktop/serial/mux8to1.vhd               ;         ;
-; selector2.vhd                    ; yes             ; User VHDL File  ; C:/Users/ruisantos/Desktop/serial/selector2.vhd             ;         ;
-; mux4to1.vhd                      ; yes             ; User VHDL File  ; C:/Users/ruisantos/Desktop/serial/mux4to1.vhd               ;         ;
-; gateXOR2.vhd                     ; yes             ; User VHDL File  ; C:/Users/ruisantos/Desktop/serial/gateXOR2.vhd              ;         ;
-; non_delayer.vhd                  ; yes             ; User VHDL File  ; C:/Users/ruisantos/Desktop/serial/non_delayer.vhd           ;         ;
-+----------------------------------+-----------------+-----------------+-------------------------------------------------------------+---------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                      ;
++----------------------------------+-----------------+-----------------+--------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                               ; Library ;
++----------------------------------+-----------------+-----------------+--------------------------------------------------------------------------------------------+---------+
+; encoder_serial.vhd               ; yes             ; User VHDL File  ; C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/encoder_serial.vhd        ;         ;
+; rserializer.vhd                  ; yes             ; User VHDL File  ; C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/rserializer.vhd           ;         ;
+; encoder_semi_parallel.vhd        ; yes             ; User VHDL File  ; C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/encoder_semi_parallel.vhd ;         ;
+; ai_divider.vhd                   ; yes             ; User VHDL File  ; C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/ai_divider.vhd            ;         ;
+; xfo.vhd                          ; yes             ; User VHDL File  ; C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/xfo.vhd                   ;         ;
+; reverse_counter_15_0.vhd         ; yes             ; User VHDL File  ; C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/reverse_counter_15_0.vhd  ;         ;
+; reverse_counter_7_0.vhd          ; yes             ; User VHDL File  ; C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/reverse_counter_7_0.vhd   ;         ;
+; flipflopT.vhd                    ; yes             ; User VHDL File  ; C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/flipflopT.vhd             ;         ;
+; mux2to1.vhd                      ; yes             ; User VHDL File  ; C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/mux2to1.vhd               ;         ;
+; gateNOr4.vhd                     ; yes             ; User VHDL File  ; C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/gateNOr4.vhd              ;         ;
+; gateAnd2.vhd                     ; yes             ; User VHDL File  ; C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/gateAnd2.vhd              ;         ;
+; flipflopD.vhd                    ; yes             ; User VHDL File  ; C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/flipflopD.vhd             ;         ;
+; mux8to1.vhd                      ; yes             ; User VHDL File  ; C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/mux8to1.vhd               ;         ;
+; selector2.vhd                    ; yes             ; User VHDL File  ; C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/selector2.vhd             ;         ;
+; mux4to1.vhd                      ; yes             ; User VHDL File  ; C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/mux4to1.vhd               ;         ;
+; gateXOR2.vhd                     ; yes             ; User VHDL File  ; C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/gateXOR2.vhd              ;         ;
+; non_delayer.vhd                  ; yes             ; User VHDL File  ; C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/non_delayer.vhd           ;         ;
++----------------------------------+-----------------+-----------------+--------------------------------------------------------------------------------------------+---------+
 
 
 +---------------------------------------------+
@@ -442,15 +441,6 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +------+--------+----------+-------------------------------------------------------------------------------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter"                         ;
-+------------+--------+----------+-------------------------------------------------------------------------------------+
-; Port       ; Type   ; Severity ; Details                                                                             ;
-+------------+--------+----------+-------------------------------------------------------------------------------------+
-; enable_end ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+------------+--------+----------+-------------------------------------------------------------------------------------+
-
-
 +-----------------------------------------------------+
 ; Post-Synthesis Netlist Statistics for Top Partition ;
 +-----------------------+-----------------------------+
@@ -476,7 +466,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:01     ;
+; Top            ; 00:00:00     ;
 +----------------+--------------+
 
 
@@ -486,105 +476,104 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
-    Info: Processing started: Wed Dec 09 19:23:35 2020
+    Info: Processing started: Wed Dec 09 20:29:36 2020
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off encoder-checker-crc8 -c encoder-checker-crc8
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
-Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
+Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
 Info (12021): Found 2 design units, including 1 entities, in source file checker_serial.vhd
-    Info (12022): Found design unit 1: checker_serial-structure File: C:/Users/ruisantos/Desktop/serial/checker_serial.vhd Line: 11
-    Info (12023): Found entity 1: checker_serial File: C:/Users/ruisantos/Desktop/serial/checker_serial.vhd Line: 5
+    Info (12022): Found design unit 1: checker_serial-structure File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/checker_serial.vhd Line: 11
+    Info (12023): Found entity 1: checker_serial File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/checker_serial.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file exploder.vhd
-    Info (12022): Found design unit 1: exploder-behavior File: C:/Users/ruisantos/Desktop/serial/exploder.vhd Line: 10
-    Info (12023): Found entity 1: exploder File: C:/Users/ruisantos/Desktop/serial/exploder.vhd Line: 4
+    Info (12022): Found design unit 1: exploder-behavior File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/exploder.vhd Line: 10
+    Info (12023): Found entity 1: exploder File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/exploder.vhd Line: 4
 Info (12021): Found 2 design units, including 1 entities, in source file encoder_serial.vhd
-    Info (12022): Found design unit 1: encoder_serial-structure File: C:/Users/ruisantos/Desktop/serial/encoder_serial.vhd Line: 11
-    Info (12023): Found entity 1: encoder_serial File: C:/Users/ruisantos/Desktop/serial/encoder_serial.vhd Line: 5
+    Info (12022): Found design unit 1: encoder_serial-structure File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/encoder_serial.vhd Line: 11
+    Info (12023): Found entity 1: encoder_serial File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/encoder_serial.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file rserializer.vhd
-    Info (12022): Found design unit 1: rserializer-structure File: C:/Users/ruisantos/Desktop/serial/rserializer.vhd Line: 11
-    Info (12023): Found entity 1: rserializer File: C:/Users/ruisantos/Desktop/serial/rserializer.vhd Line: 5
+    Info (12022): Found design unit 1: rserializer-structure File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/rserializer.vhd Line: 11
+    Info (12023): Found entity 1: rserializer File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/rserializer.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file encoder_semi_parallel.vhd
-    Info (12022): Found design unit 1: encoder_semi_parallel-structure File: C:/Users/ruisantos/Desktop/serial/encoder_semi_parallel.vhd Line: 12
-    Info (12023): Found entity 1: encoder_semi_parallel File: C:/Users/ruisantos/Desktop/serial/encoder_semi_parallel.vhd Line: 5
+    Info (12022): Found design unit 1: encoder_semi_parallel-structure File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/encoder_semi_parallel.vhd Line: 12
+    Info (12023): Found entity 1: encoder_semi_parallel File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/encoder_semi_parallel.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file ai_divider.vhd
-    Info (12022): Found design unit 1: ai_divider-structural File: C:/Users/ruisantos/Desktop/serial/ai_divider.vhd Line: 12
-    Info (12023): Found entity 1: ai_divider File: C:/Users/ruisantos/Desktop/serial/ai_divider.vhd Line: 5
+    Info (12022): Found design unit 1: ai_divider-structural File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/ai_divider.vhd Line: 12
+    Info (12023): Found entity 1: ai_divider File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/ai_divider.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file xfo.vhd
-    Info (12022): Found design unit 1: xfo-structure File: C:/Users/ruisantos/Desktop/serial/xfo.vhd Line: 11
-    Info (12023): Found entity 1: xfo File: C:/Users/ruisantos/Desktop/serial/xfo.vhd Line: 5
+    Info (12022): Found design unit 1: xfo-structure File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/xfo.vhd Line: 11
+    Info (12023): Found entity 1: xfo File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/xfo.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file reverse_counter_15_0.vhd
-    Info (12022): Found design unit 1: reverse_counter_15_0-structural File: C:/Users/ruisantos/Desktop/serial/reverse_counter_15_0.vhd Line: 12
-    Info (12023): Found entity 1: reverse_counter_15_0 File: C:/Users/ruisantos/Desktop/serial/reverse_counter_15_0.vhd Line: 5
+    Info (12022): Found design unit 1: reverse_counter_15_0-structural File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/reverse_counter_15_0.vhd Line: 11
+    Info (12023): Found entity 1: reverse_counter_15_0 File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/reverse_counter_15_0.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file reverse_counter_7_0.vhd
-    Info (12022): Found design unit 1: reverse_counter_7_0-structural File: C:/Users/ruisantos/Desktop/serial/reverse_counter_7_0.vhd Line: 11
-    Info (12023): Found entity 1: reverse_counter_7_0 File: C:/Users/ruisantos/Desktop/serial/reverse_counter_7_0.vhd Line: 5
+    Info (12022): Found design unit 1: reverse_counter_7_0-structural File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/reverse_counter_7_0.vhd Line: 11
+    Info (12023): Found entity 1: reverse_counter_7_0 File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/reverse_counter_7_0.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file flipflopt.vhd
-    Info (12022): Found design unit 1: flipFlopT-structural File: C:/Users/ruisantos/Desktop/serial/flipflopT.vhd Line: 10
-    Info (12023): Found entity 1: flipFlopT File: C:/Users/ruisantos/Desktop/serial/flipflopT.vhd Line: 4
+    Info (12022): Found design unit 1: flipFlopT-structural File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/flipflopT.vhd Line: 10
+    Info (12023): Found entity 1: flipFlopT File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/flipflopT.vhd Line: 4
 Info (12021): Found 2 design units, including 1 entities, in source file mux16to1.vhd
-    Info (12022): Found design unit 1: mux16to1-structural File: C:/Users/ruisantos/Desktop/serial/mux16to1.vhd Line: 11
-    Info (12023): Found entity 1: mux16to1 File: C:/Users/ruisantos/Desktop/serial/mux16to1.vhd Line: 5
+    Info (12022): Found design unit 1: mux16to1-structural File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/mux16to1.vhd Line: 11
+    Info (12023): Found entity 1: mux16to1 File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/mux16to1.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file mux2to1.vhd
-    Info (12022): Found design unit 1: mux2to1-behavior File: C:/Users/ruisantos/Desktop/serial/mux2to1.vhd Line: 11
-    Info (12023): Found entity 1: mux2to1 File: C:/Users/ruisantos/Desktop/serial/mux2to1.vhd Line: 5
+    Info (12022): Found design unit 1: mux2to1-behavior File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/mux2to1.vhd Line: 11
+    Info (12023): Found entity 1: mux2to1 File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/mux2to1.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file gatenor4.vhd
-    Info (12022): Found design unit 1: gateNOr4-behavior File: C:/Users/ruisantos/Desktop/serial/gateNOr4.vhd Line: 10
-    Info (12023): Found entity 1: gateNOr4 File: C:/Users/ruisantos/Desktop/serial/gateNOr4.vhd Line: 5
+    Info (12022): Found design unit 1: gateNOr4-behavior File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/gateNOr4.vhd Line: 10
+    Info (12023): Found entity 1: gateNOr4 File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/gateNOr4.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file gateand2.vhd
-    Info (12022): Found design unit 1: gateAnd2-behavior File: C:/Users/ruisantos/Desktop/serial/gateAnd2.vhd Line: 9
-    Info (12023): Found entity 1: gateAnd2 File: C:/Users/ruisantos/Desktop/serial/gateAnd2.vhd Line: 4
+    Info (12022): Found design unit 1: gateAnd2-behavior File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/gateAnd2.vhd Line: 9
+    Info (12023): Found entity 1: gateAnd2 File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/gateAnd2.vhd Line: 4
 Info (12021): Found 2 design units, including 1 entities, in source file flipflopd.vhd
-    Info (12022): Found design unit 1: flipFlopD-behavior File: C:/Users/ruisantos/Desktop/serial/flipflopD.vhd Line: 10
-    Info (12023): Found entity 1: flipFlopD File: C:/Users/ruisantos/Desktop/serial/flipflopD.vhd Line: 4
+    Info (12022): Found design unit 1: flipFlopD-behavior File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/flipflopD.vhd Line: 10
+    Info (12023): Found entity 1: flipFlopD File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/flipflopD.vhd Line: 4
 Info (12021): Found 2 design units, including 1 entities, in source file mux8to1.vhd
-    Info (12022): Found design unit 1: mux8to1-structural File: C:/Users/ruisantos/Desktop/serial/mux8to1.vhd Line: 11
-    Info (12023): Found entity 1: mux8to1 File: C:/Users/ruisantos/Desktop/serial/mux8to1.vhd Line: 5
+    Info (12022): Found design unit 1: mux8to1-structural File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/mux8to1.vhd Line: 11
+    Info (12023): Found entity 1: mux8to1 File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/mux8to1.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file selector2.vhd
-    Info (12022): Found design unit 1: selector2-behavior File: C:/Users/ruisantos/Desktop/serial/selector2.vhd Line: 10
-    Info (12023): Found entity 1: selector2 File: C:/Users/ruisantos/Desktop/serial/selector2.vhd Line: 5
+    Info (12022): Found design unit 1: selector2-behavior File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/selector2.vhd Line: 10
+    Info (12023): Found entity 1: selector2 File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/selector2.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file gateor3.vhd
-    Info (12022): Found design unit 1: gateOr3-behavior File: C:/Users/ruisantos/Desktop/serial/gateOr3.vhd Line: 10
-    Info (12023): Found entity 1: gateOr3 File: C:/Users/ruisantos/Desktop/serial/gateOr3.vhd Line: 5
+    Info (12022): Found design unit 1: gateOr3-behavior File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/gateOr3.vhd Line: 10
+    Info (12023): Found entity 1: gateOr3 File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/gateOr3.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file mux4to1.vhd
-    Info (12022): Found design unit 1: mux4to1-structural File: C:/Users/ruisantos/Desktop/serial/mux4to1.vhd Line: 11
-    Info (12023): Found entity 1: mux4to1 File: C:/Users/ruisantos/Desktop/serial/mux4to1.vhd Line: 5
+    Info (12022): Found design unit 1: mux4to1-structural File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/mux4to1.vhd Line: 11
+    Info (12023): Found entity 1: mux4to1 File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/mux4to1.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file gateand3.vhd
-    Info (12022): Found design unit 1: gateAnd3-behavior File: C:/Users/ruisantos/Desktop/serial/gateAnd3.vhd Line: 10
-    Info (12023): Found entity 1: gateAnd3 File: C:/Users/ruisantos/Desktop/serial/gateAnd3.vhd Line: 5
+    Info (12022): Found design unit 1: gateAnd3-behavior File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/gateAnd3.vhd Line: 10
+    Info (12023): Found entity 1: gateAnd3 File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/gateAnd3.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file gatenor2.vhd
-    Info (12022): Found design unit 1: gateNOr2-behavior File: C:/Users/ruisantos/Desktop/serial/gateNOr2.vhd Line: 10
-    Info (12023): Found entity 1: gateNOr2 File: C:/Users/ruisantos/Desktop/serial/gateNOr2.vhd Line: 5
+    Info (12022): Found design unit 1: gateNOr2-behavior File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/gateNOr2.vhd Line: 10
+    Info (12023): Found entity 1: gateNOr2 File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/gateNOr2.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file gatexor2.vhd
-    Info (12022): Found design unit 1: gateXOR2-behavior File: C:/Users/ruisantos/Desktop/serial/gateXOR2.vhd Line: 9
-    Info (12023): Found entity 1: gateXOR2 File: C:/Users/ruisantos/Desktop/serial/gateXOR2.vhd Line: 4
+    Info (12022): Found design unit 1: gateXOR2-behavior File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/gateXOR2.vhd Line: 9
+    Info (12023): Found entity 1: gateXOR2 File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/gateXOR2.vhd Line: 4
 Info (12021): Found 2 design units, including 1 entities, in source file selector.vhd
-    Info (12022): Found design unit 1: selector-structural File: C:/Users/ruisantos/Desktop/serial/selector.vhd Line: 10
-    Info (12023): Found entity 1: selector File: C:/Users/ruisantos/Desktop/serial/selector.vhd Line: 5
+    Info (12022): Found design unit 1: selector-structural File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/selector.vhd Line: 10
+    Info (12023): Found entity 1: selector File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/selector.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file non_delayer.vhd
-    Info (12022): Found design unit 1: non_delayer-structure File: C:/Users/ruisantos/Desktop/serial/non_delayer.vhd Line: 10
-    Info (12023): Found entity 1: non_delayer File: C:/Users/ruisantos/Desktop/serial/non_delayer.vhd Line: 5
+    Info (12022): Found design unit 1: non_delayer-structure File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/non_delayer.vhd Line: 10
+    Info (12023): Found entity 1: non_delayer File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/non_delayer.vhd Line: 5
 Info (12127): Elaborating entity "encoder_serial" for the top level hierarchy
-Info (12128): Elaborating entity "encoder_semi_parallel" for hierarchy "encoder_semi_parallel:semi_parallel" File: C:/Users/ruisantos/Desktop/serial/encoder_serial.vhd Line: 38
-Warning (10036): Verilog HDL or VHDL warning at encoder_semi_parallel.vhd(18): object "s_enable_end" assigned a value but never read File: C:/Users/ruisantos/Desktop/serial/encoder_semi_parallel.vhd Line: 18
-Info (12128): Elaborating entity "reverse_counter_15_0" for hierarchy "encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter" File: C:/Users/ruisantos/Desktop/serial/encoder_semi_parallel.vhd Line: 62
-Warning (10036): Verilog HDL or VHDL warning at reverse_counter_15_0.vhd(15): object "nQ0" assigned a value but never read File: C:/Users/ruisantos/Desktop/serial/reverse_counter_15_0.vhd Line: 15
-Warning (10036): Verilog HDL or VHDL warning at reverse_counter_15_0.vhd(17): object "nQ1" assigned a value but never read File: C:/Users/ruisantos/Desktop/serial/reverse_counter_15_0.vhd Line: 17
-Warning (10036): Verilog HDL or VHDL warning at reverse_counter_15_0.vhd(20): object "nQ2" assigned a value but never read File: C:/Users/ruisantos/Desktop/serial/reverse_counter_15_0.vhd Line: 20
-Info (12128): Elaborating entity "flipFlopT" for hierarchy "encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter|flipFlopT:ff0" File: C:/Users/ruisantos/Desktop/serial/reverse_counter_15_0.vhd Line: 37
-Info (12128): Elaborating entity "gateXOR2" for hierarchy "encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter|flipFlopT:ff0|gateXOR2:xorr" File: C:/Users/ruisantos/Desktop/serial/flipflopT.vhd Line: 27
-Info (12128): Elaborating entity "flipFlopD" for hierarchy "encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter|flipFlopT:ff0|flipFlopD:andd1" File: C:/Users/ruisantos/Desktop/serial/flipflopT.vhd Line: 28
-Info (12128): Elaborating entity "gateAnd2" for hierarchy "encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter|gateAnd2:andd" File: C:/Users/ruisantos/Desktop/serial/reverse_counter_15_0.vhd Line: 39
-Info (12128): Elaborating entity "ai_divider" for hierarchy "encoder_semi_parallel:semi_parallel|ai_divider:ai_div" File: C:/Users/ruisantos/Desktop/serial/encoder_semi_parallel.vhd Line: 63
-Info (12128): Elaborating entity "selector2" for hierarchy "encoder_semi_parallel:semi_parallel|ai_divider:ai_div|selector2:sel" File: C:/Users/ruisantos/Desktop/serial/ai_divider.vhd Line: 30
-Info (12128): Elaborating entity "xfo" for hierarchy "encoder_semi_parallel:semi_parallel|xfo:xors" File: C:/Users/ruisantos/Desktop/serial/encoder_semi_parallel.vhd Line: 64
-Info (12128): Elaborating entity "gateNOr4" for hierarchy "encoder_semi_parallel:semi_parallel|gateNOr4:final1" File: C:/Users/ruisantos/Desktop/serial/encoder_semi_parallel.vhd Line: 65
-Info (12128): Elaborating entity "non_delayer" for hierarchy "encoder_semi_parallel:semi_parallel|non_delayer:nd" File: C:/Users/ruisantos/Desktop/serial/encoder_semi_parallel.vhd Line: 68
-Info (12128): Elaborating entity "rserializer" for hierarchy "rserializer:serializer" File: C:/Users/ruisantos/Desktop/serial/encoder_serial.vhd Line: 39
-Info (12128): Elaborating entity "reverse_counter_7_0" for hierarchy "rserializer:serializer|reverse_counter_7_0:counter" File: C:/Users/ruisantos/Desktop/serial/rserializer.vhd Line: 35
-Warning (10036): Verilog HDL or VHDL warning at reverse_counter_7_0.vhd(14): object "nQ0" assigned a value but never read File: C:/Users/ruisantos/Desktop/serial/reverse_counter_7_0.vhd Line: 14
-Warning (10036): Verilog HDL or VHDL warning at reverse_counter_7_0.vhd(16): object "nQ1" assigned a value but never read File: C:/Users/ruisantos/Desktop/serial/reverse_counter_7_0.vhd Line: 16
-Info (12128): Elaborating entity "mux8to1" for hierarchy "rserializer:serializer|mux8to1:mux" File: C:/Users/ruisantos/Desktop/serial/rserializer.vhd Line: 36
-Info (12128): Elaborating entity "mux4to1" for hierarchy "rserializer:serializer|mux8to1:mux|mux4to1:res1" File: C:/Users/ruisantos/Desktop/serial/mux8to1.vhd Line: 29
-Info (12128): Elaborating entity "mux2to1" for hierarchy "rserializer:serializer|mux8to1:mux|mux4to1:res1|mux2to1:res1" File: C:/Users/ruisantos/Desktop/serial/mux4to1.vhd Line: 23
+Info (12128): Elaborating entity "encoder_semi_parallel" for hierarchy "encoder_semi_parallel:semi_parallel" File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/encoder_serial.vhd Line: 38
+Info (12128): Elaborating entity "reverse_counter_15_0" for hierarchy "encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter" File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/encoder_semi_parallel.vhd Line: 60
+Warning (10036): Verilog HDL or VHDL warning at reverse_counter_15_0.vhd(14): object "nQ0" assigned a value but never read File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/reverse_counter_15_0.vhd Line: 14
+Warning (10036): Verilog HDL or VHDL warning at reverse_counter_15_0.vhd(16): object "nQ1" assigned a value but never read File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/reverse_counter_15_0.vhd Line: 16
+Warning (10036): Verilog HDL or VHDL warning at reverse_counter_15_0.vhd(19): object "nQ2" assigned a value but never read File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/reverse_counter_15_0.vhd Line: 19
+Info (12128): Elaborating entity "flipFlopT" for hierarchy "encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter|flipFlopT:ff0" File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/reverse_counter_15_0.vhd Line: 35
+Info (12128): Elaborating entity "gateXOR2" for hierarchy "encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter|flipFlopT:ff0|gateXOR2:xorr" File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/flipflopT.vhd Line: 27
+Info (12128): Elaborating entity "flipFlopD" for hierarchy "encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter|flipFlopT:ff0|flipFlopD:andd1" File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/flipflopT.vhd Line: 28
+Info (12128): Elaborating entity "gateAnd2" for hierarchy "encoder_semi_parallel:semi_parallel|reverse_counter_15_0:counter|gateAnd2:andd" File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/reverse_counter_15_0.vhd Line: 37
+Info (12128): Elaborating entity "ai_divider" for hierarchy "encoder_semi_parallel:semi_parallel|ai_divider:ai_div" File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/encoder_semi_parallel.vhd Line: 61
+Info (12128): Elaborating entity "selector2" for hierarchy "encoder_semi_parallel:semi_parallel|ai_divider:ai_div|selector2:sel" File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/ai_divider.vhd Line: 30
+Info (12128): Elaborating entity "xfo" for hierarchy "encoder_semi_parallel:semi_parallel|xfo:xors" File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/encoder_semi_parallel.vhd Line: 62
+Info (12128): Elaborating entity "gateNOr4" for hierarchy "encoder_semi_parallel:semi_parallel|gateNOr4:final1" File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/encoder_semi_parallel.vhd Line: 63
+Info (12128): Elaborating entity "non_delayer" for hierarchy "encoder_semi_parallel:semi_parallel|non_delayer:nd" File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/encoder_semi_parallel.vhd Line: 66
+Info (12128): Elaborating entity "rserializer" for hierarchy "rserializer:serializer" File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/encoder_serial.vhd Line: 39
+Info (12128): Elaborating entity "reverse_counter_7_0" for hierarchy "rserializer:serializer|reverse_counter_7_0:counter" File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/rserializer.vhd Line: 35
+Warning (10036): Verilog HDL or VHDL warning at reverse_counter_7_0.vhd(14): object "nQ0" assigned a value but never read File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/reverse_counter_7_0.vhd Line: 14
+Warning (10036): Verilog HDL or VHDL warning at reverse_counter_7_0.vhd(16): object "nQ1" assigned a value but never read File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/reverse_counter_7_0.vhd Line: 16
+Info (12128): Elaborating entity "mux8to1" for hierarchy "rserializer:serializer|mux8to1:mux" File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/rserializer.vhd Line: 36
+Info (12128): Elaborating entity "mux4to1" for hierarchy "rserializer:serializer|mux8to1:mux|mux4to1:res1" File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/mux8to1.vhd Line: 29
+Info (12128): Elaborating entity "mux2to1" for hierarchy "rserializer:serializer|mux8to1:mux|mux4to1:res1|mux2to1:res1" File: C:/Users/aralm/OneDrive/Ambiente de Trabalho/ACA/crc-main/serial/mux4to1.vhd Line: 23
 Warning (12241): 8 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
@@ -593,10 +582,10 @@ Info (21057): Implemented 38 device resources after synthesis - the final resour
     Info (21058): Implemented 3 input pins
     Info (21059): Implemented 2 output pins
     Info (21061): Implemented 33 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 8 warnings
-    Info: Peak virtual memory: 4858 megabytes
-    Info: Processing ended: Wed Dec 09 19:23:59 2020
-    Info: Elapsed time: 00:00:24
-    Info: Total CPU time (on all processors): 00:00:34
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 7 warnings
+    Info: Peak virtual memory: 4842 megabytes
+    Info: Processing ended: Wed Dec 09 20:29:49 2020
+    Info: Elapsed time: 00:00:13
+    Info: Total CPU time (on all processors): 00:00:29
 
 

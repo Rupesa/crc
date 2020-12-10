@@ -1,8 +1,8 @@
 onerror {exit -code 1}
 vlib work
 vcom -work work encoder-checker-crc8.vho
-vcom -work work Waveform29.vwf.vht
-vsim  -c -t 1ps -L cycloneiv -L altera -L altera_mf -L 220model -L sgate -L altera_lnsim work.encoder_serial_vhd_vec_tst
+vcom -work work Waveform30.vwf.vht
+vsim -c -t 1ps -L cycloneiv -L altera -L altera_mf -L 220model -L sgate -L altera_lnsim work.encoder_serial_vhd_vec_tst
 vcd file -direction encoder-checker-crc8.msim.vcd
 vcd add -internal encoder_serial_vhd_vec_tst/*
 vcd add -internal encoder_serial_vhd_vec_tst/i1/*
